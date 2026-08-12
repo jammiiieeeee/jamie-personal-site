@@ -183,6 +183,12 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .scroll-cue.visible {
+    opacity: 1;
   }
 
   .scroll-arrow {
@@ -531,6 +537,64 @@
     border-left: 2px solid var(--seal);
   }
 
+  /* ── Floating pill nav ── */
+  .pill-nav {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.4rem 0.5rem;
+    opacity: 0;
+    transform: translateX(-50%) translateY(0.75rem);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+
+  .pill-nav.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+
+  .pill-nav-link {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 0.3rem 0.75rem;
+    transition: color 0.2s ease;
+  }
+
+  .pill-nav-link.active {
+    color: var(--ink);
+  }
+
+  .pill-nav-link:hover {
+    color: var(--seal);
+  }
+
+  .pill-nav-link:focus-visible {
+    outline: 2px solid var(--seal);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .pill-nav-sep {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.625rem;
+    color: var(--rule);
+    user-select: none;
+  }
+
   /* ── Responsive ── */
   @media (max-width: 600px) {
     :root {
@@ -634,6 +698,7 @@
       <li><a href="mailto:jamie@example.com" class="contact-link">jamie@example.com</a></li>
       <li><a href="https://github.com/jamiesyho" class="contact-link">GitHub</a></li>
       <li><a href="https://linkedin.com/in/jamiesyho" class="contact-link">LinkedIn</a></li>
+      <li><a href="now.html" class="contact-link">What I'm doing now</a></li>
     </ul>
   </section>
 
@@ -649,6 +714,11 @@
     </div>
   </section>
 
+  <nav class="pill-nav" id="pill-nav">
+  <span class="pill-nav-link active">Home</span>
+  <span class="pill-nav-sep">&middot;</span>
+  <a href="now.html" class="pill-nav-link">Now</a>
+</nav>
 </main>
 
 <script>
@@ -696,6 +766,17 @@
 
     /* Prompt fades */
     setTimeout(function() { promptEl.classList.add('visible'); }, 400);
+
+    /* Pill nav appears */
+    setTimeout(function() { document.getElementById('pill-nav').classList.add('visible'); }, 600);
+
+    /* Mark that the visitor has been here */
+    sessionStorage.setItem('visited', '1');
+  }
+
+  /* If returning from another page on this site, skip the wait */
+  if (sessionStorage.getItem('visited') === '1') {
+    document.getElementById('pill-nav').classList.add('visible');
   }
 
   setTimeout(type, 400);
@@ -723,6 +804,16 @@
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
   reveals.forEach(function(el) { observer.observe(el); });
+
+  /* ── Show scroll cue after user scrolls a bit ── */
+  var scrollCue = document.querySelector('.scroll-cue');
+  var scrollCueShown = false;
+  window.addEventListener('scroll', function() {
+    if (!scrollCueShown && window.scrollY > 80) {
+      scrollCueShown = true;
+      scrollCue.classList.add('visible');
+    }
+  });
 })();
 </script>
 </body>

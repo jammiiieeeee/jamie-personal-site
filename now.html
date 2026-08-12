@@ -1,0 +1,361 @@
+<!--
+THESIS: A letter from the present moment — pure prose, no section headers, no taxonomy. The now page as a dispatch, not a structured log. Refuses the "Currently / Reading / Building" list format.
+
+OWN-WORLD: The Personal Dispatch — warm paper (#faf7f2), dark ink, Vollkorn body, Courier Prime meta, one sealing wax crimson rule (#b22234), Caveat signature. Flat, typographic-first, no images, no glass, no shadows. Every edge square. One accent used on ≤5 elements.
+
+STORY: The visitor arrives to understand what Jamie is doing, thinking, and caring about right now. They read a letter, not a checklist. They leave with a sense of the person — warm, honest, slightly imperfect.
+
+FIRST VIEWPORT: A subtle "← Home" back-link in Courier Prime at top-left. Then the salutation ("Dear you,") in italic Vollkorn, followed by the opening paragraph. Below the fold, flowing prose paragraphs with generous spacing. The closing: a sealing wax rule, "Talk soon,", Caveat signature, a one-line date, and a P.S.
+
+FORM: The Letter — single flowing prose, no section headers. Assigned index 4, seed eb414de6. No challengers (degraded roll).
+
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Now — Jamie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Courier+Prime:ital@0;1&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #faf7f2;
+    --ink: #1c1c1c;
+    --ink-soft: #3b3632;
+    --ink-faint: #6e6660;
+    --seal: #b22234;
+    --seal-bright: #d4253d;
+    --seal-dim: #8b1a28;
+    --rule: #d4cec6;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+    --measure: 60ch;
+    --margin-edge: clamp(1.5rem, 6vw, 8rem);
+  }
+
+  html {
+    font-size: clamp(16px, 1.1vw + 10px, 20px);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: 'Vollkorn', Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  main {
+    max-width: calc(var(--measure) + 2 * var(--margin-edge));
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--margin-edge) var(--spacing-xl);
+  }
+
+  .back-link {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    display: inline-block;
+    margin-bottom: var(--spacing-xl);
+    transition: color 0.2s ease, transform 0.15s ease;
+    position: relative;
+  }
+
+  .back-link:hover {
+    color: var(--seal);
+    transform: translateX(-3px);
+  }
+
+  .back-link:focus-visible {
+    outline: 2px solid var(--seal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ── Floating pill nav ── */
+  .pill-nav {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .pill-nav-link {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 0.3rem 0.75rem;
+    transition: color 0.2s ease;
+  }
+
+  .pill-nav-link.active {
+    color: var(--ink);
+  }
+
+  .pill-nav-link:hover {
+    color: var(--seal);
+  }
+
+  .pill-nav-link:focus-visible {
+    outline: 2px solid var(--seal);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .pill-nav-sep {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.625rem;
+    color: var(--rule);
+    user-select: none;
+  }
+
+  /* ── Letter ── */
+  .letter {
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .salutation {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: var(--spacing-lg);
+    max-width: var(--measure);
+  }
+
+  .letter p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: var(--measure);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .letter p:last-child { margin-bottom: 0; }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.arrived {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+  .reveal-delay-6 { transition-delay: 0.6s; }
+  .reveal-delay-7 { transition-delay: 0.7s; }
+
+  /* ── Closing ── */
+  .closing {
+    border-top: 1px solid var(--rule);
+    border-image: linear-gradient(to right, transparent 0%, var(--rule) 10%, var(--rule) 90%, transparent 100%) 1;
+    padding-top: var(--spacing-xl);
+  }
+
+  .closing-rule {
+    width: 4rem; height: 2px;
+    background: var(--seal);
+    margin: 0 0 var(--spacing-lg);
+    border: none;
+    transform-origin: left;
+  }
+
+  .closing-rule.drawn {
+    animation: drawRule 0.6s ease forwards;
+  }
+
+  @keyframes drawRule {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .closing-salutation {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .signature-wrap {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .signature {
+    font-family: 'Caveat', cursive;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .signature-drawn {
+    position: relative;
+    display: inline-block;
+  }
+
+  .signature-drawn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--seal);
+  }
+
+  .signature-drawn.signed::after {
+    animation: underlineSign 0.8s ease 0.3s forwards;
+  }
+
+  @keyframes underlineSign {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+
+  .closing-date {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-top: var(--spacing-xs);
+  }
+
+  .closing-ps {
+    margin-top: var(--spacing-md);
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    line-height: 1.6;
+    max-width: var(--measure);
+    padding-left: 1rem;
+    border-left: 2px solid var(--seal);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    :root {
+      --margin-edge: 1.25rem;
+      --spacing-xl: 3.5rem;
+      --spacing-lg: 2.5rem;
+      --spacing-md: 1.5rem;
+    }
+
+    .back-link { margin-bottom: var(--spacing-lg); }
+    .salutation { margin-bottom: var(--spacing-md); }
+    .signature { font-size: 2.5rem; }
+  }
+
+  @media print {
+    body { background: white; color: black; font-size: 11pt; }
+    main { max-width: 100%; padding: 0; }
+    .back-link { display: none; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <a href="index.html" class="back-link reveal">&larr; Home</a>
+
+  <nav class="pill-nav">
+    <a href="index.html" class="pill-nav-link">Home</a>
+    <span class="pill-nav-sep">&middot;</span>
+    <span class="pill-nav-link active">Now</span>
+  </nav>
+
+  <section class="letter">
+    <p class="salutation reveal">Dear you,</p>
+
+    <p class="reveal reveal-delay-1">Here's what's happening.</p>
+
+    <p class="reveal reveal-delay-2">I'm in a season of building things that earn their keep. Not things that look good in a portfolio — things that solve actual problems for actual people. The kind of work where the win isn't a launch post; it's someone saying "this just works" and meaning it. That's been my bar and it's a harder bar than it sounds. Getting there means saying no to cleverness more often than I'd like. The cleverness is fun. The usefulness is the job.</p>
+
+    <p class="reveal reveal-delay-3">I've been thinking a lot about craft — not as a performance, not as perfectionism dressed up in a nicer word, but as attention paid at every level. The person who uses what you built doesn't care about your architecture. They care that it works. They care that it doesn't frustrate them. They care that someone thought about them while making it. Everything else is a conversation between engineers, and that conversation has its place, but it's not the product. I've been trying to stay closer to the product.</p>
+
+    <p class="reveal reveal-delay-4">On my desk: a notebook I've been carrying for three years, still only half-full. A mechanical pencil I stole from somewhere in 2019 that I will never replace. A stack of books I'm "currently reading" — the quotes are doing a lot of work there. The desk is a museum of intentions. I'm okay with that. The half-full notebook means I'm still thinking. The pencil means I'm sentimental about the right things. The stack means I keep reaching for more than I can hold. These are all good signs.</p>
+
+    <p class="reveal reveal-delay-5">I'm reading <em>The Creative Act</em> by Rick Rubin and finding it more useful than a book about creativity has any right to be. It's not about making art — it's about noticing what's already there and getting out of its way. I keep underlining sentences and writing "yes" in the margin. That's either a sign that the book is brilliant or that I'm easy to impress. I'm choosing to believe the first one.</p>
+
+    <p class="reveal reveal-delay-6">What I care about, right now: things that last longer than the tool that made them. Code that someone will still run in five years. Interfaces that feel inevitable, not trendy. The people who taught me to care about any of this — I think about them more than they know. I'm trying to be one of those people for someone else. That's the long game.</p>
+
+    <p class="reveal reveal-delay-7">What I'm done with: pretending to care about things that don't matter. Hype cycles. Tools that solve problems I don't have. The phrase "move fast and break things" and anyone who still says it without irony. I'm done with building for the approval of people I wouldn't ask for advice. That one took a while.</p>
+
+    <p class="reveal reveal-delay-7">This page changes when something fundamental shifts — not when I ship a feature, but when I notice the ground has moved. Check back when the seasons change. I'll be here, probably with a different book and the same pencil.</p>
+  </section>
+
+  <section class="closing reveal">
+    <hr class="closing-rule" id="closing-rule" aria-hidden="true">
+    <p class="closing-salutation">Talk soon,</p>
+    <div class="signature-wrap">
+      <span class="signature-drawn" id="signature"><span class="signature">Jamie</span></span>
+    </div>
+    <p class="closing-date">Typed in one sitting. Kept honest by the voice in my head.</p>
+    <div class="closing-ps">
+      <strong>P.S.</strong> If you got here from the homepage: thanks for going deeper. If you got here from somewhere else: there's more at the other end of that &larr; link up top. Either way, I'm glad you read this far. Now go make something that helps.
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  var closingRule = document.getElementById('closing-rule');
+  var signature = document.getElementById('signature');
+  var closingDrawn = false;
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('arrived');
+        observer.unobserve(entry.target);
+
+        if (!closingDrawn && entry.target.classList.contains('closing')) {
+          closingDrawn = true;
+          setTimeout(function() { closingRule.classList.add('drawn'); }, 300);
+          setTimeout(function() { signature.classList.add('signed'); }, 700);
+        }
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(function(el) { observer.observe(el); });
+
+  sessionStorage.setItem('visited', '1');
+})();
+</script>
+</body>
+</html>
