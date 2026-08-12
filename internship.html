@@ -268,6 +268,63 @@
     margin-top: 0.15rem;
   }
 
+  /* ── Aside bubbles ── */
+  .aside {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--seal);
+    display: inline-block;
+    cursor: pointer;
+    border-bottom: 1px dashed var(--seal);
+    padding-bottom: 0.1em;
+    position: relative;
+    transition: color 0.2s;
+  }
+
+  .aside:hover { color: var(--seal-bright); }
+
+  .aside-pop {
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.6875rem;
+    line-height: 1.5;
+    padding: 0.65rem 0.85rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .aside-pop::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--ink);
+  }
+
+  .aside:hover .aside-pop {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Highlight mode — subtle crimson tint behind aside triggers */
+  body.highlight-asides .aside {
+    background: rgba(178, 34, 52, 0.08);
+    padding: 0.05em 0.15em;
+    border-radius: 1px;
+  }
+
   /* ── Insight block ── */
   .insight-list {
     list-style: none;
@@ -460,6 +517,12 @@
     .page-subtitle { margin-bottom: var(--spacing-md); }
     .signature { font-size: 2.5rem; }
 
+    .aside-pop {
+      white-space: normal;
+      max-width: 14rem;
+      text-align: center;
+    }
+
     .stat-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: var(--spacing-sm);
@@ -474,7 +537,7 @@
   }
 </style>
 </head>
-<body>
+<body class="highlight-asides">
 <main>
 
   <a href="index.html" class="back-link reveal">&larr; Home</a>
@@ -492,8 +555,8 @@
     <h1 class="page-title reveal reveal-delay-1">An internship on the factory floor</h1>
     <p class="page-subtitle reveal reveal-delay-1">E-Learning Development &middot; Articulate 360 &middot; Manufacturing Transformation</p>
     <div class="section-body">
-      <p class="reveal reveal-delay-2">I spent my internship at Johnson Electric — a global precision manufacturing company with 35,000+ employees across 20 countries, producing motors, solenoids, and motion subsystems for automotive, industrial, and medical applications. Founded in 1959, listed on the Hong Kong Stock Exchange since 1984, and holding the #1 market share in automotive micro-motors.</p>
-      <p class="reveal reveal-delay-3">My mandate was simple in words and complex in execution: build e-learning modules that actually train operators — not compliance checkboxes, not PDFs dressed up as courses. Real training, for real production lines, where the person taking the course is the person who will stand in front of the machine tomorrow. The standard you meet is the standard they carry into the factory.</p>
+      <p class="reveal reveal-delay-2">I spent my internship at Johnson Electric — a global precision manufacturing company with 35,000+ employees across 20 countries, producing motors, solenoids, and motion subsystems for automotive, industrial, and medical applications. Founded in 1959, listed on the Hong Kong Stock Exchange since 1984, and holding the <span class="aside">#1 market share in automotive micro-motors<span class="aside-pop">If you've ever adjusted a car mirror or rolled down a power window, there's a decent chance JE made the motor that moved it.</span></span>.</p>
+      <p class="reveal reveal-delay-3">My mandate was simple in words and complex in execution: build e-learning modules that actually train operators — <span class="aside">not compliance checkboxes<span class="aside-pop">The kind where you click "Next" 47 times and retain absolutely nothing. We all know these exist. I refused to build one.</span></span>, not PDFs dressed up as courses. Real training, for real production lines, where the person taking the course is the person who will stand in front of the machine tomorrow. The standard you meet is the standard they carry into the factory.</p>
     </div>
   </section>
 
@@ -506,28 +569,28 @@
         <span class="phase-num">01</span>
         <div>
           <p class="phase-title">Content Development</p>
-          <p class="phase-desc">Built interactive e-learning modules using Articulate Storyline 360, tailored to manufacturing workflows and operator training needs. Each module mapped directly to a real station on a real production line.</p>
+          <p class="phase-desc">Built interactive e-learning modules using Articulate Storyline 360, tailored to manufacturing workflows and operator training needs. Each module mapped directly to a real station on a real production line. <span class="aside">I watched operators work before I wrote a single slide.<span class="aside-pop">Shadowed three shifts. You learn things at 2am on the factory floor that no SME meeting will ever tell you.</span></span></p>
         </div>
       </li>
       <li class="phase-entry reveal reveal-delay-3">
         <span class="phase-num">02</span>
         <div>
           <p class="phase-title">Instructional Design</p>
-          <p class="phase-desc">Applied adult learning principles to structure content — from storyboarding through final production. Every screen had to earn its place. If it didn't help someone on the line do their job better, it didn't survive review.</p>
+          <p class="phase-desc">Applied adult learning principles to structure content — from storyboarding through final production. <span class="aside">Every screen had to earn its place.<span class="aside-pop">The hardest part wasn't writing the content — it was cutting the content that felt important but wasn't. If it didn't help someone on the line do their job better, it didn't survive review.</span></span></p>
         </div>
       </li>
       <li class="phase-entry reveal reveal-delay-4">
         <span class="phase-num">03</span>
         <div>
           <p class="phase-title">Knowledge Checks &amp; Assessment</p>
-          <p class="phase-desc">Developed quizzes and scenario-based assessments that verify comprehension — not the "what year was this founded" kind, but "what do you do when the pressure gauge reads red" kind. The kind that matters when the machine is running.</p>
+          <p class="phase-desc">Developed quizzes and scenario-based assessments that verify comprehension — not the "what year was this founded" kind, but <span class="aside">"what do you do when the pressure gauge reads red"<span class="aside-pop">The kind that matters when the machine is running and someone needs to make a call in the next three seconds. That's the bar.</span></span> kind. The kind that matters when the machine is running.</p>
         </div>
       </li>
       <li class="phase-entry reveal reveal-delay-5">
         <span class="phase-num">04</span>
         <div>
           <p class="phase-title">LMS Deployment</p>
-          <p class="phase-desc">Packaged SCORM-compliant modules and deployed to the corporate Learning Management System for global access. One upload, available to every site, every shift.</p>
+          <p class="phase-desc">Packaged SCORM-compliant modules and deployed to the corporate Learning Management System for global access. One upload, available to every site, every shift. <span class="aside">SCORM is older than I am.<span class="aside-pop">The spec was published in 2000. It still works. Sometimes the boring technology is the right one.</span></span></p>
         </div>
       </li>
     </ul>
@@ -600,7 +663,7 @@
     </div>
 
     <div class="section-body">
-      <p class="reveal reveal-delay-6" style="margin-top: var(--spacing-md);">The shift was real. Before: instructor-led sessions with printed manuals — one trainer, one location, one shift at a time. After: SCORM-compliant modules accessible 24/7, standardized globally, with complete LMS analytics and completion tracking. The training infrastructure caught up to the production infrastructure.</p>
+      <p class="reveal reveal-delay-6" style="margin-top: var(--spacing-md);">The shift was real. Before: instructor-led sessions with printed manuals — one trainer, one location, one shift at a time. After: SCORM-compliant modules accessible 24/7, standardized globally, with complete LMS analytics and completion tracking. <span class="aside">The training infrastructure caught up to the production infrastructure.<span class="aside-pop">This was the thesis from day one. It held up. I'm still slightly surprised.</span></span></p>
     </div>
   </section>
 
@@ -612,17 +675,17 @@
       <li class="insight-item reveal reveal-delay-2">
         <p class="insight-num">01</p>
         <p class="insight-title">Content is infrastructure</p>
-        <p class="insight-body">Well-designed training modules are as critical to production lines as the machinery itself. A machine without a trained operator is just a machine. A trained operator without a maintained curriculum is a trained operator waiting to forget. Content, done right, is not a nice-to-have. It's part of the production line.</p>
+          <p class="insight-body">Well-designed training modules are as critical to production lines as the machinery itself. <span class="aside">A machine without a trained operator is just a machine.<span class="aside-pop">An expensive one, at that. The ROI on a $5M automated line drops to zero if nobody knows how to run it.</span></span> Content, done right, is not a nice-to-have. It's part of the production line.</p>
       </li>
       <li class="insight-item reveal reveal-delay-3">
         <p class="insight-num">02</p>
         <p class="insight-title">Learning must match the line speed</p>
-        <p class="insight-body">As production lines evolve from manual to semi to full automation, training must keep pace. You can't teach automated equipment with a printed binder. Digital learning scales with the business — it doesn't have to wait for the right trainer to be available on the right shift at the right site.</p>
+          <p class="insight-body">As production lines evolve from manual to semi to full automation, training must keep pace. You can't teach automated equipment with a printed binder. <span class="aside">Digital learning scales with the business.<span class="aside-pop">It doesn't have to wait for the right trainer to be available on the right shift at the right site. That constraint disappears the moment you go digital.</span></span></p>
       </li>
       <li class="insight-item reveal reveal-delay-4">
         <p class="insight-num">03</p>
         <p class="insight-title">Data-driven learning works</p>
-        <p class="insight-body">LMS analytics close the feedback loop that classroom training leaves open. Track completions. Measure retention. Prove ROI. When you can show a factory manager that the operators who took the module have 40% fewer quality defects, the conversation changes from "should we do e-learning" to "when can we get the next module."</p>
+          <p class="insight-body">LMS analytics close the feedback loop that classroom training leaves open. <span class="aside">When you can show a factory manager the numbers, the conversation changes.<span class="aside-pop">It goes from "should we do e-learning" to "when can we get the next module." That shift happened. I watched it happen.</span></span> Track completions. Measure retention. Prove ROI.</p>
       </li>
     </ul>
   </section>
