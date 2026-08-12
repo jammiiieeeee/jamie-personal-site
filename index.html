@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Courier+Prime:ital@0;1&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #faf7f2;
+    --paper-warm: #f4efe7;
+    --ink: #1c1c1c;
+    --ink-soft: #3b3632;
+    --ink-faint: #6e6660;
+    --seal: #b22234;
+    --seal-bright: #d4253d;
+    --seal-dim: #8b1a28;
+    --rule: #d4cec6;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+    --measure: 60ch;
+    --margin-edge: clamp(1.5rem, 6vw, 8rem);
+  }
+
+  html {
+    font-size: clamp(16px, 1.1vw + 10px, 20px);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: 'Vollkorn', Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  main {
+    max-width: calc(var(--measure) + 2 * var(--margin-edge));
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--margin-edge) var(--spacing-lg);
+  }
+
+  /* ── Opening ── */
+  .opening {
+    position: relative;
+    padding-top: var(--spacing-lg);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: calc(var(--spacing-lg) + 3rem);
+    cursor: default;
+  }
+
+  .typewriter-line {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--spacing-sm);
+    min-height: 4.5em;
+    white-space: pre-line;
+    position: relative;
+  }
+
+  .typewriter-line::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 1.1em;
+    background: var(--ink);
+    margin-left: 0.15em;
+    animation: blink 0.8s step-end infinite;
+  }
+
+  .typewriter-line.done::after {
+    animation: blink 2s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Name stamp-in */
+  .opening-name-wrap {
+    overflow: hidden;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .opening-name {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 10ch;
+    opacity: 0;
+    transform: translateY(0.25em) scale(0.97);
+  }
+
+  .opening-name.stamped {
+    animation: stampIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes stampIn {
+    0%   { opacity: 0; transform: translateY(0.25em) scale(0.97); }
+    40%  { opacity: 1; }
+    60%  { transform: translateY(-0.04em) scale(1.015); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .opening-sub {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 38ch;
+    font-style: italic;
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+
+  .opening-sub.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s;
+  }
+
+  /* Rule draws itself */
+  .opening-rule {
+    width: 4rem;
+    height: 2px;
+    background: var(--seal);
+    margin: var(--spacing-lg) 0;
+    border: none;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+
+  .opening-rule.drawn {
+    animation: drawRule 0.6s ease 0.35s forwards;
+  }
+
+  @keyframes drawRule {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .opening-prompt {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.8125rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.6s;
+  }
+
+  .opening-prompt.visible { opacity: 1; }
+
+  /* ── Scroll cue (arrow bounce) ── */
+  .scroll-cue {
+    position: absolute;
+    bottom: var(--spacing-lg);
+    left: 0;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .scroll-arrow {
+    display: inline-block;
+    animation: arrowBounce 1.6s ease-in-out infinite;
+  }
+
+  @keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50%      { transform: translateY(6px); opacity: 1; }
+  }
+
+  /* ── Scroll-reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.arrived {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── Aside bubbles ── */
+  .aside {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--seal);
+    display: inline-block;
+    cursor: pointer;
+    border-bottom: 1px dashed var(--seal);
+    padding-bottom: 0.1em;
+    position: relative;
+    transition: color 0.2s;
+  }
+
+  .aside:hover { color: var(--seal-bright); }
+
+  .aside-pop {
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.6875rem;
+    line-height: 1.5;
+    padding: 0.65rem 0.85rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .aside-pop::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--ink);
+  }
+
+  .aside:hover .aside-pop {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ── Sections ── */
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .section + .section {
+    border-top: 1px solid var(--rule);
+    border-image: linear-gradient(to right, transparent 0%, var(--rule) 10%, var(--rule) 90%, transparent 100%) 1;
+  }
+
+  .section-heading {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: var(--spacing-sm);
+    color: var(--ink);
+  }
+
+  .section-heading-sub {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+  }
+
+  .section-body {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+
+  .section-body p + p { margin-top: var(--spacing-sm); }
+
+  /* ── Work entries ── */
+  .work-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-md);
+  }
+
+  .work-entry {
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: default;
+    position: relative;
+    /* highlight reveal on scroll */
+    --highlight-progress: 0;
+  }
+
+  .work-entry:first-child { padding-top: 0; }
+  .work-entry:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .work-date {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.25rem;
+  }
+
+  .work-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .work-context {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .work-surface {
+    font-size: 0.9375rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    max-width: var(--measure);
+  }
+
+  .work-real-talk {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--seal);
+    line-height: 1.6;
+    margin-top: 0;
+  }
+
+  .work-entry:hover .work-real-talk,
+  .work-entry:focus-within .work-real-talk {
+    max-height: 6rem;
+    margin-top: 0.75rem;
+    opacity: 1;
+  }
+
+  /* ── Timeline ── */
+  .timeline { list-style: none; padding: 0; margin-top: var(--spacing-md); }
+
+  .timeline-entry {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .timeline-entry:first-child { padding-top: 0; }
+  .timeline-entry:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .timeline-period {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    padding-top: 0.2rem;
+  }
+
+  .timeline-role {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .timeline-org {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.8125rem;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .timeline-note {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-top: 0.25rem;
+  }
+
+  /* ── Contact links ── */
+  .contact-link {
+    display: inline-block;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.9375rem;
+    color: var(--seal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--seal);
+    padding-bottom: 0.15em;
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    position: relative;
+  }
+
+  .contact-link:hover {
+    color: var(--seal-dim);
+    border-color: var(--seal-dim);
+    transform: translateY(-1px);
+  }
+
+  .contact-link:active {
+    transform: translateY(1px);
+    transition: transform 0.05s;
+  }
+
+  .contact-link:focus-visible {
+    outline: 2px solid var(--seal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .contact-list {
+    list-style: none; padding: 0;
+    margin-top: var(--spacing-sm);
+    display: flex; flex-wrap: wrap; gap: var(--spacing-sm) var(--spacing-md);
+  }
+
+  /* ── Closing ── */
+  .closing {
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+  }
+
+  .closing-rule {
+    width: 4rem; height: 2px;
+    background: var(--seal);
+    margin-bottom: var(--spacing-lg);
+    border: none;
+    transform-origin: left;
+  }
+
+  .closing-rule.drawn {
+    animation: drawRule 0.6s ease forwards;
+  }
+
+  .closing-salutation {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  /* Handwritten signature */
+  .signature-wrap {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .signature {
+    font-family: 'Caveat', cursive;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .signature path {
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+  }
+
+  .signature-drawn {
+    position: relative;
+    display: inline-block;
+  }
+
+  .signature-drawn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--seal);
+  }
+
+  .signature-drawn.signed::after {
+    animation: underlineSign 0.8s ease 0.3s forwards;
+  }
+
+  @keyframes underlineSign {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+
+  .closing-date {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    margin-top: var(--spacing-sm);
+  }
+
+  .closing-ps {
+    margin-top: var(--spacing-md);
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    line-height: 1.6;
+    max-width: var(--measure);
+    padding-left: 1rem;
+    border-left: 2px solid var(--seal);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    :root {
+      --margin-edge: 1.25rem;
+      --spacing-xl: 3.5rem;
+      --spacing-lg: 2.5rem;
+    }
+
+    .opening { min-height: 90svh; }
+
+    .timeline-entry {
+      grid-template-columns: 5.5rem 1fr;
+      gap: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .aside-pop {
+      white-space: normal;
+      max-width: 14rem;
+      text-align: center;
+    }
+
+    .signature { font-size: 2.5rem; }
+  }
+
+  @media print {
+    body { background: white; color: black; font-size: 11pt; }
+    main { max-width: 100%; padding: 0; }
+    .scroll-cue { display: none; }
+    .aside-pop { display: none; }
+    .work-real-talk { max-height: none !important; opacity: 1 !important; margin-top: 0.75rem !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <section class="opening">
+    <p class="typewriter-line" id="typewriter" aria-live="polite"></p>
+    <div class="opening-name-wrap">
+      <h1 class="opening-name" id="opening-name">Jamie</h1>
+    </div>
+    <p class="opening-sub" id="opening-sub">I build things that earn their keep. Stick around — I'm better company than a LinkedIn bio.</p>
+    <hr class="opening-rule" id="opening-rule" aria-hidden="true">
+    <p class="opening-prompt" id="opening-prompt">Keep scrolling. I'll win you over yet.</p>
+    <div class="scroll-cue"><span>Scroll</span><span class="scroll-arrow">&darr;</span></div>
+  </section>
+
+  <section class="section" id="about">
+    <h2 class="section-heading reveal">The deal</h2>
+    <p class="section-heading-sub reveal reveal-delay-1">No fluff. I'll tell you what I actually believe.</p>
+    <div class="section-body">
+      <p class="reveal reveal-delay-1">I try to build things that are useful. I try to make the people around me better at what they do. And I don't ignore the voice in my head that says <span class="aside">"this isn't right yet"<span class="aside-pop">That voice is annoying. It's also usually correct. Don't tell it I said that.</span></span>. I listen to that voice. I build what it asks for. Sometimes it takes weeks. Sometimes it takes one more try at 2am when you should've gone to bed.</p>
+      <p class="reveal reveal-delay-2">I chase flow state — the thing that happens when you've practiced something so deeply that your hands know what to do before your brain does. On a piano, that's muscle memory. Your fingers find the keys and you're just <em>in the music</em>, not performing it. In code, it's when the architecture finally snaps into place and you stop fighting the tool and start <em>making</em>. Both feel the same. Both are the reason I do this.</p>
+      <p class="reveal reveal-delay-3">I give a damn. Embarrassingly so. It's my most expensive personality trait and also the only one I'd keep.</p>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <h2 class="section-heading reveal">Things I've shipped</h2>
+    <p class="section-heading-sub reveal reveal-delay-1">That didn't ship me. Hover for the unfiltered version.</p>
+    <ul class="work-list">
+      <li class="work-entry reveal reveal-delay-1" tabindex="0">
+        <p class="work-date">2025–2026</p>
+        <p class="work-title">Score Extractor</p>
+        <p class="work-context">Python · PyQt6 · OpenCV · PaddleOCR</p>
+        <p class="work-surface">A desktop app that turns a video of page-turning sheet music into a clean, printable PDF. Automatic page-turn detection, hand-overlay removal, and self-tuning computer vision pipeline. Built for music teachers and pianists.</p>
+        <p class="work-real-talk">Real talk: 374 tests. Clean Architecture with dependency injection. An adaptive calibration system that learns the threshold for bar detection <em>per video</em> so it never guesses wrong. Custom dark theme with brass accents. PyInstaller onefile .exe. I built a self-tuning CV pipeline in a desktop app with a custom design system. I don't know what "over-engineering" means and I refuse to learn.</p>
+      </li>
+      <li class="work-entry reveal reveal-delay-2" tabindex="0">
+        <p class="work-date">2025</p>
+        <p class="work-title">2D Factory Simulation</p>
+        <p class="work-context">TypeScript · Phaser · Supabase</p>
+        <p class="work-surface">A production-line training simulator for factory workers — 17-station motor assembly, real-time decision-making, and a full FSM-driven engine. Built for actual manufacturing floors.</p>
+        <p class="work-real-talk">Real talk: I taught a WebGL game engine to behave like an industrial training tool. 17 stations, 12 entity types, an event bus with 3 architectural layers. This thing has more state machines than some startups.</p>
+      </li>
+      <li class="work-entry reveal reveal-delay-3" tabindex="0">
+        <p class="work-date">2024</p>
+        <p class="work-title">AeroSky</p>
+        <p class="work-context">Three.js · Vanilla JS · Zero dependencies</p>
+        <p class="work-surface">Ten interactive physics simulations in the browser — orbital mechanics, wave propagation, quantum foam, fluid surfaces. Each one a real physical model you can manipulate directly.</p>
+        <p class="work-real-talk">Real talk: 4,000 lines of vanilla JS, zero build step, runs straight from index.html. I built a code-gen pipeline that writes new simulations automatically because I got tired of doing it by hand.</p>
+      </li>
+      <li class="work-entry reveal reveal-delay-3" tabindex="0">
+        <p class="work-date">2024</p>
+        <p class="work-title">PPT TTS</p>
+        <p class="work-context">Python · AWS Polly · Tkinter</p>
+        <p class="work-surface">A desktop app that adds neural text-to-speech narration to training presentations. Drag in a PPT, get back fully-narrated slides ready for e-learning import.</p>
+        <p class="work-real-talk">Real talk: 1,300-line Tkinter GUI with animated breathe effects on the Generate button. The button literally pulses. I built a pronunciation correction system because AWS Polly can't say "stator."</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section" id="contact">
+    <h2 class="section-heading reveal">Your turn</h2>
+    <p class="section-heading-sub reveal reveal-delay-1">I've been talking this whole time. Rude of me.</p>
+    <div class="section-body">
+      <p class="reveal reveal-delay-1">If you made it this far, you're either genuinely curious or impressively bored. Either way <span class="aside">I respect the commitment<span class="aside-pop">Most people bounce after the first joke. You stayed. That means something. Probably.</span></span>. If you want to talk — about work, about a project, about why tabs are objectively wrong — pick a channel.</p>
+    </div>
+    <ul class="contact-list reveal reveal-delay-2">
+      <li><a href="mailto:jamie@example.com" class="contact-link">jamie@example.com</a></li>
+      <li><a href="https://github.com/jamiesyho" class="contact-link">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/jamiesyho" class="contact-link">LinkedIn</a></li>
+    </ul>
+  </section>
+
+  <section class="closing reveal">
+    <hr class="closing-rule" id="closing-rule" aria-hidden="true">
+    <p class="closing-salutation">Talk soon,</p>
+    <div class="signature-wrap">
+      <span class="signature-drawn" id="signature"><span class="signature">Jamie</span></span>
+    </div>
+    <p class="closing-date">Typed with two fingers. Deployed with one command. Proofread by the voice in my head.</p>
+    <div class="closing-ps">
+      <strong>P.S.</strong> If you're a recruiter — I'm open to the right thing, but I will ask hard questions back. If you're a bot, I hope your training data enjoys this. If you're a human who read every word: thank you. You're exactly who this was for. Now go build something that helps.
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function() {
+  /* ── Typewriter ── */
+  var tw = document.getElementById('typewriter');
+  var lines = [
+    { text: 'Hey.', pause: 600 },
+    { text: 'Yeah, you.', pause: 500 },
+    { text: 'Welcome. I\'m', pause: 300 }
+  ];
+  var lineIndex = 0, charIndex = 0, currentText = '';
+
+  function type() {
+    if (lineIndex >= lines.length) { tw.classList.add('done'); openReveal(); return; }
+    var line = lines[lineIndex];
+    if (charIndex < line.text.length) {
+      currentText += line.text.charAt(charIndex);
+      tw.textContent = currentText;
+      charIndex++;
+      setTimeout(type, 50 + Math.random() * 40);
+    } else {
+      setTimeout(function() {
+        lineIndex++; charIndex = 0;
+        if (lineIndex < lines.length) currentText += '\n';
+        setTimeout(type, line.pause);
+      }, line.pause);
+    }
+  }
+
+  function openReveal() {
+    var nameEl = document.getElementById('opening-name');
+    var subEl = document.getElementById('opening-sub');
+    var ruleEl = document.getElementById('opening-rule');
+    var promptEl = document.getElementById('opening-prompt');
+
+    /* Name stamps in */
+    nameEl.classList.add('stamped');
+
+    /* Sub fades */
+    setTimeout(function() { subEl.classList.add('visible'); }, 150);
+
+    /* Rule draws itself */
+    ruleEl.classList.add('drawn');
+
+    /* Prompt fades */
+    setTimeout(function() { promptEl.classList.add('visible'); }, 400);
+  }
+
+  setTimeout(type, 400);
+
+  /* ── Scroll-triggered reveals ── */
+  var reveals = document.querySelectorAll('.reveal');
+  var closingRule = document.getElementById('closing-rule');
+  var signature = document.getElementById('signature');
+  var closingDrawn = false;
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('arrived');
+        observer.unobserve(entry.target);
+
+        /* When closing section arrives: draw rule + underline signature */
+        if (!closingDrawn && entry.target.classList.contains('closing')) {
+          closingDrawn = true;
+          setTimeout(function() { closingRule.classList.add('drawn'); }, 300);
+          setTimeout(function() { signature.classList.add('signed'); }, 700);
+        }
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(function(el) { observer.observe(el); });
+})();
+</script>
+</body>
+</html>

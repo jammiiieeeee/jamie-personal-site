@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Mockups — Jamie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&family=Vollkorn:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Courier+Prime:ital@0;1&family=DM+Serif+Display:ital@0;1&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Cinzel:wght@400;500;600;700;900&family=Uncial+Antiqua&family=Bebas+Neue&family=Share+Tech+Mono&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .chrome-banner {
+    position: sticky; top: 0; z-index: 10;
+    background: #1a1a1a; color: #888;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.65rem 1.25rem; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid #333;
+  }
+  .chrome-badge { font-size: 0.625rem; padding: 0.15rem 0.5rem; border-radius: 3px; background: #2a2a2a; color: #999; }
+  .chrome-assigned { color: #f0c060; }
+  .chrome-nav {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 10; display: flex; gap: 0.5rem;
+  }
+  .chrome-nav a {
+    display: inline-block; background: #1a1a1a; color: #888;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.625rem; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none; padding: 0.5rem 0.75rem;
+    border-radius: 4px; border: 1px solid #333;
+  }
+  .chrome-nav a:hover { color: #fff; border-color: #555; }
+
+  .round-header {
+    background: #0d0d0d; color: #666;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.625rem; letter-spacing: 0.14em;
+    text-transform: uppercase; text-align: center; padding: 0.5rem;
+    border-bottom: 1px solid #222;
+  }
+
+  /* ══════ R1: THE LETTER ══════ */
+  .lt { font-family: 'Vollkorn', Georgia, serif; background: #faf7f2; color: #1c1c1c; min-height: 100vh; }
+  .lt-body { padding: clamp(2.5rem, 8vw, 6rem) clamp(1.5rem, 8vw, 6rem); max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
+  .lt-greeting { font-family: 'Courier Prime', monospace; font-size: 0.875rem; color: #6b635a; letter-spacing: 0.04em; margin-bottom: 1.5rem; }
+  .lt-name { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+  .lt-statement { font-size: clamp(1.15rem, 2.5vw, 1.5rem); font-style: italic; line-height: 1.55; color: #5b5550; max-width: 34ch; margin-bottom: 3rem; }
+  .lt-rule { width: 3rem; height: 1px; background: #b22234; border: none; margin-bottom: 2rem; }
+  .lt-signoff { font-family: 'Courier Prime', monospace; font-size: 0.8125rem; color: #9c948c; letter-spacing: 0.06em; }
+  .lt-sections { max-width: 720px; margin: 0 auto; padding: 0 clamp(1.5rem, 8vw, 6rem) clamp(4rem, 8vw, 6rem); }
+  .lt-section { padding: 3rem 0; border-top: 1px solid #d4cec6; }
+  .lt-h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; margin-bottom: 1rem; }
+  .lt-p { font-size: 1rem; line-height: 1.7; color: #5b5550; max-width: 60ch; }
+  .lt-p + .lt-p { margin-top: 0.75rem; }
+  .lt-closing { padding: 3rem 0; border-top: 1px solid #d4cec6; }
+  .lt-closing-rule { width: 3rem; height: 1px; background: #b22234; border: none; margin-bottom: 2rem; }
+  .lt-closing-text { font-size: 1.5rem; font-style: italic; color: #5b5550; margin-bottom: 0.5rem; }
+  .lt-closing-name { font-size: 1.75rem; font-weight: 700; }
+
+  /* ══════ R1: LINER NOTES ══════ */
+  .ln { font-family: 'DM Serif Display', Georgia, serif; background: #f6f1e8; color: #1a1814; min-height: 100vh; }
+  .ln-body { padding: clamp(2.5rem, 10vw, 7rem) clamp(1.5rem, 8vw, 7rem); max-width: 860px; margin: 0 auto; }
+  .ln-credits { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8c8475; margin-bottom: 2.5rem; display: flex; gap: 3rem; flex-wrap: wrap; }
+  .ln-credit-label { color: #b8b0a0; }
+  .ln-statement { font-size: clamp(2.25rem, 6vw, 4rem); font-weight: 400; line-height: 1.1; max-width: 16ch; margin-bottom: 3rem; }
+  .ln-statement em { font-style: italic; color: #c4a03a; }
+  .ln-photo { width: 100%; height: clamp(200px, 40vw, 380px); background: linear-gradient(135deg, #d4cbbb 0%, #b8a98e 40%, #c4a03a 70%, #a08850 100%); margin-bottom: 3rem; position: relative; }
+  .ln-photo::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 40%, transparent 35%, rgba(0,0,0,.12) 100%); }
+  .ln-tracklist { list-style:none; }
+  .ln-track { display:flex; align-items:baseline; gap:1rem; padding:.875rem 0; border-bottom:1px solid #e0d8c8; font-family:'JetBrains Mono',monospace; font-size:.75rem; color:#8c8475; }
+  .ln-track:first-child { border-top:1px solid #e0d8c8; }
+  .ln-track-num { color:#c4a03a; min-width:1.5rem; }
+  .ln-track-title { font-family:'DM Serif Display',Georgia,serif; font-size:1.25rem; color:#1a1814; }
+  .ln-track-note { font-size:.6875rem; color:#b8b0a0; margin-left:auto; }
+
+  /* ══════ R1: BOOKSHELF ══════ */
+  .bs { background:#3a332b; color:#e8e0d4; min-height:100vh; font-family:'Old Standard TT',Georgia,serif; }
+  .bs-body { padding:clamp(2rem,8vw,5rem) clamp(1.5rem,8vw,5rem); max-width:960px; margin:0 auto; }
+  .bs-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3.5rem; flex-wrap:wrap; gap:1rem; }
+  .bs-name { font-size:1.125rem; letter-spacing:.04em; color:#c4b8a8; }
+  .bs-nav { font-family:'JetBrains Mono',monospace; font-size:.6875rem; letter-spacing:.08em; color:#8c7e6e; display:flex; gap:1.5rem; }
+  .bs-nav span { color:#d4c4a8; }
+  .bs-label { font-family:'JetBrains Mono',monospace; font-size:.625rem; letter-spacing:.14em; text-transform:uppercase; color:#6e6050; margin-bottom:1.5rem; }
+  .bs-shelf { display:grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap:2.5rem 2rem; margin-bottom:4rem; }
+  .bs-object-frame { padding:1rem; background:#2a241e; border-radius:2px; margin-bottom:.875rem; min-height:160px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(0,0,0,.35); }
+  .bs-object-frame svg { width:64px; height:64px; opacity:.55; }
+  .bs-object-name { font-size:.9375rem; color:#d4c4a8; margin-bottom:.25rem; }
+  .bs-object-note { font-family:'JetBrains Mono',monospace; font-size:.625rem; color:#8c7e6e; }
+  .bs-divider { height:1px; background:#4a4035; margin:3.5rem 0; }
+  .bs-shelf-label { font-family:'JetBrains Mono',monospace; font-size:.625rem; letter-spacing:.14em; text-transform:uppercase; color:#6e6050; margin-bottom:1rem; }
+  .bs-tools { display:flex; gap:2.5rem; font-family:'JetBrains Mono',monospace; font-size:.6875rem; color:#8c7e6e; flex-wrap:wrap; }
+  .bs-tools strong { color:#d4c4a8; font-weight:400; }
+
+  /* ══════ R1: MONOGRAPH ══════ */
+  .mn { font-family:'Bodoni Moda',Georgia,serif; background:#fafaf8; color:#111; min-height:100vh; }
+  .mn-hero { background:#e8e4da; padding:clamp(3rem,10vw,8rem) clamp(1.5rem,8vw,7rem) clamp(2.5rem,6vw,5rem); }
+  .mn-hero-inner { max-width:720px; margin:0 auto; }
+  .mn-plate { font-family:'JetBrains Mono',monospace; font-size:.625rem; letter-spacing:.14em; text-transform:uppercase; color:#999; margin-bottom:2rem; }
+  .mn-title { font-size:clamp(2.5rem,6vw,4.5rem); font-weight:700; line-height:1.05; letter-spacing:-.015em; max-width:12ch; margin-bottom:1.25rem; }
+  .mn-sub { font-size:1.125rem; font-style:italic; color:#555; max-width:32ch; line-height:1.5; }
+  .mn-index { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid #ddd; }
+  .mn-index-item { padding:clamp(2rem,5vw,3.5rem) clamp(1.5rem,5vw,3.5rem); border-bottom:1px solid #ddd; border-right:1px solid #ddd; }
+  .mn-index-item:nth-child(even) { border-right:none; }
+  .mn-index-num { font-family:'JetBrains Mono',monospace; font-size:.625rem; letter-spacing:.12em; color:#bbb; margin-bottom:1rem; }
+  .mn-index-heading { font-size:1.375rem; font-weight:600; margin-bottom:.5rem; color:#111; }
+  .mn-index-desc { font-size:.875rem; color:#777; line-height:1.55; max-width:26ch; }
+  .mn-footer { padding:2rem clamp(1.5rem,8vw,7rem); font-family:'JetBrains Mono',monospace; font-size:.625rem; letter-spacing:.08em; color:#bbb; display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; }
+
+  /* ══════ R2: MAP ROOM ══════ */
+  .mr { font-family:'Archivo',system-ui,sans-serif; background:#f4ecd8; color:#3b3024; min-height:100vh; position:relative; }
+  .mr-grid { position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(rgba(139,115,85,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(139,115,85,.06) 1px,transparent 1px); background-size:48px 48px; }
+  .mr-body { padding:clamp(2rem,8vw,5rem) clamp(1.5rem,8vw,5rem); max-width:880px; margin:0 auto; position:relative; z-index:1; }
+  .mr-topobar { display:flex; justify-content:space-between; align-items:center; margin-bottom:3rem; flex-wrap:wrap; gap:1rem; }
+  .mr-coords { font-family:'JetBrains Mono',monospace; font-size:.625rem; letter-spacing:.1em; color:#8b7355; }
+  .mr-scale { font-family:'JetBrains Mono',monospace; font-size:.5625rem; letter-spacing:.08em; color:#8b7355; display:flex; align-items:center; gap:.5rem; }
+  .mr-scale-bar { width:3rem; height:1px; background:#8b7355; position:relative; }
+  .mr-scale-bar::before,.mr-scale-bar::after { content:''; position:absolute; top:-2px; width:1px; height:5px; background:#8b7355; }
+  .mr-scale-bar::before { left:0; } .mr-scale-bar::after { right:0; }
+  .mr-compass { display:flex; align-items:center; justify-content:center; margin-bottom:3rem; }
+  .mr-compass-rose { width:64px; height:64px; position:relative; }
+  .mr-compass-ring { width:64px; height:64px; border:1px solid #c4b898; border-radius:50%; position:absolute; }
+  .mr-compass-n,.mr-compass-s,.mr-compass-e,.mr-compass-w { position:absolute; font-size:.5rem; font-weight:600; letter-spacing:.12em; color:#c4553d; }
+  .mr-compass-n { top:-.75rem; left:50%; transform:translateX(-50%); }
+  .mr-compass-s { bottom:-.75rem; left:50%; transform:translateX(-50%); color:#8b7355; }
+  .mr-compass-e { right:-.75rem; top:50%; transform:translateY(-50%); color:#8b7355; }
+  .mr-compass-w { left:-.75rem; top:50%; transform:translateY(-50%); color:#8b7355; }
+  .mr-compass-needle { position:absolute; top:50%; left:50%; width:2px; height:28px; background:#c4553d; transform:translate(-50%,-100%); }
+  .mr-compass-needle::after { content:''; position:absolute; bottom:-4px; left:50%; transform:translateX(-50%); border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid #c4553d; }
+  .mr-title-block { text-align:center; margin-bottom:4rem; }
+  .mr-territory-label { font-family:'JetBrains Mono',monospace; font-size:.5625rem; letter-spacing:.16em; text-transform:uppercase; color:#8b7355; margin-bottom:.75rem; }
+  .mr-title { font-size:clamp(2.5rem,6vw,4.5rem); font-weight:700; letter-spacing:-.02em; line-height:1.06; color:#3b3024; max-width:12ch; margin:0 auto .75rem; }
+  .mr-subtitle { font-size:.9375rem; font-weight:400; color:#8b7355; font-style:italic; max-width:36ch; margin:0 auto; line-height:1.5; }
+  .mr-legend { display:flex; gap:2rem; flex-wrap:wrap; justify-content:center; margin-bottom:3rem; font-family:'JetBrains Mono',monospace; font-size:.5625rem; letter-spacing:.08em; color:#8b7355; }
+  .mr-legend-dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:.5rem; }
+  .mr-contours { display:grid; grid-template-columns:1fr 1fr; border:1px solid #d4cbb8; background:#faf6ec; }
+  .mr-contour { padding:clamp(1.25rem,3vw,2rem) clamp(1.25rem,3vw,2rem); border-bottom:1px solid #e0d8c4; border-right:1px solid #e0d8c4; }
+  .mr-contour:nth-child(even) { border-right:none; }
+  .mr-contour-elevation { font-family:'JetBrains Mono',monospace; font-size:.5625rem; letter-spacing:.1em; color:#8b7355; margin-bottom:.5rem; }
+  .mr-contour-name { font-size:1.125rem; font-weight:600; color:#3b3024; margin-bottom:.25rem; }
+  .mr-contour-desc { font-size:.8125rem; color:#6b5d4a; line-height:1.45; }
+  .mr-contour-depth { font-family:'JetBrains Mono',monospace; font-size:.5rem; letter-spacing:.06em; color:#b8a890; margin-top:.5rem; }
+  .mr-footer { text-align:center; padding-top:3rem; font-family:'JetBrains Mono',monospace; font-size:.5625rem; letter-spacing:.08em; color:#b8a890; }
+
+  /* ══════ R2: HERBARIUM ══════ */
+  .hb { font-family:'Cormorant Garamond',Georgia,serif; background:#f5f0e6; color:#2b2218; min-height:100vh; }
+  .hb-body { padding:clamp(2rem,8vw,5rem) clamp(1.5rem,8vw,5rem); max-width:780px; margin:0 auto; }
+  .hb-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:3rem; flex-wrap:wrap; gap:1.5rem; }
+  .hb-taxonomy { font-family:'JetBrains Mono',monospace; font-size:.625rem; letter-spacing:.12em; text-transform:uppercase; color:#8c8068; line-height:1.8; }
+  .hb-taxonomy strong { color:#4a6b3a; font-weight:400; }
+  .hb-title { font-size:clamp(2rem,5vw,3.25rem); font-weight:600; font-style:italic; line-height:1.12; max-width:14ch; text-align:right; }
+  .hb-specimens { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:3rem; }
+  .hb-specimen { border:1px solid #d4ccb8; background:#faf7f0; }
+  .hb-specimen-press { height:180px; background:#e8e0cc; display:flex; align-items:center; justify-content:center; position:relative; }
+  .hb-specimen-press svg { width:48px; height:48px; opacity:.4; }
+  .hb-specimen-label { padding:.875rem 1.125rem; border-top:1px solid #d4ccb8; }
+  .hb-specimen-name { font-style:italic; font-size:1.0625rem; margin-bottom:.25rem; color:#2b2218; }
+  .hb-specimen-meta { font-family:'JetBrains Mono',monospace; font-size:.5625rem; letter-spacing:.06em; color:#8c8068; line-height:1.6; }
+  .hb-specimen-meta span { color:#4a6b3a; }
+  .hb-note { font-family:'JetBrains Mono',monospace; font-size:.625rem; color:#8c8068; letter-spacing:.04em; padding:1.5rem 0; border-top:1px solid #d4ccb8; text-align:center; font-style:italic; }
+
+  /* ══════ R2: CONSTELLATION ══════ */
+  .cc { font-family:'Spectral',Georgia,serif; background:#0d1117; color:#c8d6e5; min-height:100vh; }
+  .cc-body { padding:clamp(2.5rem,10vw,7rem) clamp(1.5rem,8vw,5rem); max-width:820px; margin:0 auto; }
+  .cc-constellation-name { font-family:'Syne',system-ui,sans-serif; font-size:.6875rem; letter-spacing:.2em; text-transform:uppercase; color:#5a6e8a; margin-bottom:2rem; }
+  .cc-title { font-size:clamp(2rem,5vw,3.5rem); font-weight:400; line-height:1.15; color:#f0f4ff; max-width:16ch; margin-bottom:4rem; }
+  .cc-title em { font-style:italic; color:#f0c060; }
+  .cc-constellation { display:flex; flex-wrap:wrap; gap:3rem 5rem; margin:4rem 0; justify-content:flex-start; }
+  .cc-star { text-align:center; }
+  .cc-star-dot { width:10px; height:10px; background:#f0c060; border-radius:50%; margin:0 auto .75rem; box-shadow:0 0 12px rgba(240,192,96,.5),0 0 32px rgba(240,192,96,.15); }
+  .cc-star-label { font-family:'Syne',system-ui,sans-serif; font-size:.6875rem; letter-spacing:.1em; text-transform:uppercase; color:#8a9bb5; margin-bottom:.15rem; }
+  .cc-star-name { font-size:1rem; font-style:italic; color:#d0d8ea; }
+  .cc-footer { font-family:'Syne',system-ui,sans-serif; font-size:.625rem; letter-spacing:.14em; color:#4a5a70; text-align:center; padding-top:3rem; }
+
+  /* ══════ R2: TELEGRAM ══════ */
+  .tg { font-family:'Space Mono','Courier New',monospace; background:#fef9e7; color:#1a1a1a; min-height:100vh; }
+  .tg-body { padding:clamp(2rem,8vw,5rem) clamp(1.25rem,6vw,4rem); max-width:680px; margin:0 auto; }
+  .tg-header-strip { display:flex; justify-content:space-between; align-items:baseline; padding-bottom:.75rem; border-bottom:2px solid #1a1a1a; margin-bottom:3rem; font-size:.625rem; letter-spacing:.1em; color:#e03131; flex-wrap:wrap; gap:.5rem; }
+  .tg-header-strip span { color:#888; }
+  .tg-dispatch { margin-bottom:3rem; }
+  .tg-dispatch-to { font-size:.75rem; letter-spacing:.08em; color:#888; margin-bottom:.25rem; }
+  .tg-dispatch-body { font-size:1rem; line-height:1.6; color:#1a1a1a; padding:1.25rem; border:1px solid #333; background:#fdf8ee; margin-bottom:.5rem; }
+  .tg-dispatch-body strong { font-weight:700; color:#e03131; }
+  .tg-dispatch-from { font-size:.625rem; letter-spacing:.08em; color:#888; text-align:right; }
+  .tg-rule { height:1px; background:#333; margin:2.5rem 0; opacity:.3; }
+  .tg-bulletins { list-style:none; }
+  .tg-bulletin { padding:1rem 0; border-bottom:1px solid #e0d8c4; display:flex; gap:1rem; align-items:baseline; }
+  .tg-bulletin:first-child { border-top:1px solid #e0d8c4; }
+  .tg-bulletin-time { font-size:.5625rem; letter-spacing:.08em; color:#e03131; min-width:4.5rem; }
+  .tg-bulletin-headline { font-size:.875rem; font-weight:700; color:#1a1a1a; margin-bottom:.15rem; }
+  .tg-bulletin-brief { font-size:.6875rem; color:#666; line-height:1.5; }
+
+  /* ══════ R3: ILLUMINATED MANUSCRIPT ══════ */
+  .im { font-family:'Cormorant Garamond',Georgia,serif; background:#faf6ed; color:#2b1a0e; min-height:100vh; }
+  .im-body { padding:clamp(2rem,8vw,5rem) clamp(1.5rem,8vw,5rem); max-width:800px; margin:0 auto; }
+  .im-initial { float:left; font-family:'Uncial Antiqua',serif; font-size:clamp(5rem,10vw,9rem); line-height:.7; color:#8b2500; margin-right:.25rem; margin-bottom:-.25rem; }
+  .im-title { font-size:clamp(2rem,5vw,3.25rem); font-weight:600; font-style:italic; line-height:1.3; max-width:16ch; margin-bottom:2rem; padding-top:.75rem; }
+  .im-ornament { text-align:center; color:#c4a03a; font-family:'JetBrains Mono',monospace; font-size:.75rem; margin:2rem 0; letter-spacing:.3em; }
+  .im-passage { font-size:1.125rem; line-height:1.8; color:#4a3020; max-width:55ch; margin:0 auto; }
+  .im-passage em { color:#8b2500; font-style:italic; }
+  .im-miniature { margin:3rem 0; padding:2rem; background:#f0e6d0; border:2px solid #c4a03a; text-align:center; position:relative; }
+  .im-miniature::before { content:''; position:absolute; inset:3px; border:1px solid #c4a03a; pointer-events:none; }
+  .im-miniature-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; max-width:500px; margin:0 auto; }
+  .im-miniature-item { padding:1rem; background:#faf6ed; border:1px solid #d4c4a0; }
+  .im-miniature-label { font-family:'JetBrains Mono',monospace; font-size:.5rem; letter-spacing:.12em; text-transform:uppercase; color:#8b7355; margin-bottom:.25rem; }
+  .im-miniature-name { font-size:1rem; font-style:italic; color:#2b1a0e; }
+  .im-miniature-note { font-family:'JetBrains Mono',monospace; font-size:.5rem; color:#8b7355; margin-top:.25rem; }
+  .im-colophon { font-family:'JetBrains Mono',monospace; font-size:.5625rem; color:#8b7355; letter-spacing:.08em; text-align:center; padding-top:3rem; border-top:1px solid #d4c4a0; }
+
+  /* ══════ R3: TRADING FLOOR ══════ */
+  .tf { font-family:'Share Tech Mono','JetBrains Mono',monospace; background:#0a0e0a; color:#00ff41; min-height:100vh; }
+  .tf-body { padding:clamp(1.5rem,6vw,3rem) clamp(1rem,4vw,2rem); max-width:900px; margin:0 auto; }
+  .tf-ticker { overflow:hidden; border-bottom:1px solid #1a3a1a; padding-bottom:.5rem; margin-bottom:2rem; font-size:.625rem; letter-spacing:.08em; color:#00cc33; white-space:nowrap; }
+  .tf-header { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:2.5rem; flex-wrap:wrap; gap:1rem; }
+  .tf-terminal { font-size:.75rem; color:#00ff41; }
+  .tf-time { font-size:.5625rem; color:#006622; }
+  .tf-big-quote { margin-bottom:3rem; }
+  .tf-symbol { font-size:clamp(1.5rem,4vw,2.5rem); font-weight:700; letter-spacing:.04em; margin-bottom:.25rem; }
+  .tf-price { font-size:clamp(2.5rem,6vw,4rem); font-weight:700; letter-spacing:-.02em; line-height:1; margin-bottom:.5rem; }
+  .tf-change { font-size:.875rem; color:#00cc33; margin-bottom:1rem; }
+  .tf-sectors { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:3rem; }
+  .tf-sector { border:1px solid #1a3a1a; padding:1.25rem; }
+  .tf-sector-tag { font-size:.5rem; letter-spacing:.12em; text-transform:uppercase; color:#006622; margin-bottom:.5rem; }
+  .tf-sector-name { font-size:1rem; color:#00ff41; margin-bottom:.25rem; }
+  .tf-sector-detail { font-size:.625rem; color:#008833; display:flex; gap:1rem; flex-wrap:wrap; }
+  .tf-sector-detail span { color:#00cc33; }
+  .tf-orderbook { border-top:1px solid #1a3a1a; padding-top:1.5rem; }
+  .tf-orderbook-title { font-size:.5625rem; letter-spacing:.12em; color:#006622; margin-bottom:.75rem; }
+  .tf-order { display:flex; justify-content:space-between; padding:.35rem 0; font-size:.6875rem; border-bottom:1px solid #0d1a0d; }
+  .tf-order span:first-child { color:#008833; }
+  .tf-order-resolved { color:#00ff41; }
+
+  /* ══════ R3: RACING DASHBOARD ══════ */
+  .rd { font-family:'Inter',system-ui,sans-serif; background:#0f0f14; color:#e0e0e0; min-height:100vh; }
+  .rd-body { padding:clamp(1.5rem,6vw,3rem) clamp(1rem,4vw,2rem); max-width:900px; margin:0 auto; }
+  .rd-top-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:2.5rem; flex-wrap:wrap; gap:1rem; }
+  .rd-driver { font-family:'JetBrains Mono',monospace; font-size:.5625rem; letter-spacing:.12em; text-transform:uppercase; color:#ff4444; }
+  .rd-lap { font-family:'JetBrains Mono',monospace; font-size:clamp(2rem,5vw,3.5rem); font-weight:700; color:#fff; }
+  .rd-lap span { font-size:.875rem; color:#666; }
+  .rd-telemetry { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:3rem; }
+  .rd-gauge { background:#1a1a22; border:1px solid #2a2a33; padding:1.25rem; text-align:center; }
+  .rd-gauge-label { font-family:'JetBrains Mono',monospace; font-size:.5rem; letter-spacing:.12em; text-transform:uppercase; color:#666; margin-bottom:.5rem; }
+  .rd-gauge-value { font-size:clamp(1.25rem,3vw,2rem); font-weight:700; }
+  .rd-gauge-value.good { color:#00cc66; }
+  .rd-gauge-value.warn { color:#ffaa00; }
+  .rd-gauge-value.hot { color:#ff4444; }
+  .rd-sectors { display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; margin-bottom:2.5rem; }
+  .rd-sector { padding:.75rem; text-align:center; font-family:'JetBrains Mono',monospace; }
+  .rd-sector.green { background:#0d331a; color:#00cc66; }
+  .rd-sector.yellow { background:#332200; color:#ffaa00; }
+  .rd-sector.purple { background:#1a0d33; color:#aa55ff; }
+  .rd-sector-time { font-size:1.25rem; font-weight:700; }
+  .rd-sector-label { font-size:.5rem; letter-spacing:.08em; opacity:.6; }
+  .rd-projects { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .rd-project { border:1px solid #2a2a33; padding:1rem; }
+  .rd-project-header { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:.5rem; }
+  .rd-project-name { font-weight:600; font-size:.9375rem; }
+  .rd-project-time { font-family:'JetBrains Mono',monospace; font-size:.625rem; color:#666; }
+  .rd-project-bar { height:3px; background:#2a2a33; border-radius:1px; overflow:hidden; margin-bottom:.5rem; }
+  .rd-project-fill { height:100%; border-radius:1px; }
+  .rd-project-note { font-size:.6875rem; color:#888; }
+
+  /* ══════ R3: WANTED POSTER ══════ */
+  .wp { font-family:'Old Standard TT',Georgia,serif; background:#f2e8d0; color:#1a1410; min-height:100vh; }
+  .wp-body { padding:clamp(2rem,8vw,5rem) clamp(1.5rem,6vw,4rem); max-width:700px; margin:0 auto; }
+  .wp-ornament-top { text-align:center; font-size:clamp(1.5rem,4vw,2.5rem); letter-spacing:.5em; color:#8b6914; margin-bottom:.5rem; }
+  .wp-header { text-align:center; margin-bottom:3rem; }
+  .wp-wanted { font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,8vw,6rem); letter-spacing:.08em; line-height:1; color:#1a1410; margin-bottom:.25rem; }
+  .wp-sub { font-family:'JetBrains Mono',monospace; font-size:.625rem; letter-spacing:.25em; text-transform:uppercase; color:#8b6914; }
+  .wp-portrait { width:clamp(180px,30vw,240px); height:clamp(220px,36vw,300px); background:linear-gradient(180deg,#d4c8a8 0%,#b8a878 50%,#a08858 100%); margin:0 auto 2rem; border:3px solid #1a1410; position:relative; }
+  .wp-portrait::after { content:''; position:absolute; inset:4px; border:1px solid #1a1410; }
+  .wp-name { text-align:center; font-family:'Bebas Neue',sans-serif; font-size:clamp(1.5rem,4vw,2.5rem); letter-spacing:.12em; margin-bottom:2rem; color:#1a1410; }
+  .wp-desc { text-align:center; font-size:1rem; line-height:1.6; max-width:40ch; margin:0 auto 2rem; color:#4a3830; }
+  .wp-desc strong { font-weight:700; color:#1a1410; }
+  .wp-aliases { text-align:center; font-family:'JetBrains Mono',monospace; font-size:.6875rem; color:#8b6914; letter-spacing:.08em; margin-bottom:2rem; }
+  .wp-aliases span { color:#1a1410; }
+  .wp-reward { text-align:center; border:2px solid #1a1410; padding:1.5rem; margin-bottom:2rem; background:#faf5e8; }
+  .wp-reward-label { font-family:'JetBrains Mono',monospace; font-size:.5625rem; letter-spacing:.2em; text-transform:uppercase; color:#8b6914; margin-bottom:.5rem; }
+  .wp-reward-amount { font-family:'Bebas Neue',sans-serif; font-size:clamp(2rem,5vw,3rem); color:#1a1410; letter-spacing:.04em; }
+  .wp-footer { text-align:center; font-family:'JetBrains Mono',monospace; font-size:.5625rem; color:#8b6914; letter-spacing:.08em; padding-top:1rem; border-top:1px solid #d4c898; }
+
+  @media (max-width:600px) {
+    .hb-specimens,.mr-contours,.mn-index,.tf-sectors,.rd-projects { grid-template-columns:1fr; }
+    .mr-contour,.mn-index-item { border-right:none; }
+    .bs-shelf { grid-template-columns:1fr 1fr; }
+    .rd-telemetry { grid-template-columns:1fr; }
+    .rd-sectors { grid-template-columns:repeat(3,1fr); }
+    .im-miniature-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="chrome-nav">
+  <a href="#">Top</a>
+  <a href="#r1">R1</a>
+  <a href="#r2">R2</a>
+  <a href="#r3">R3</a>
+</div>
+
+<!-- ═══════════ ROUND 1 ═══════════ -->
+<div class="round-header" id="r1">Round 1 &mdash; Seed a0c0fa1b &mdash; Assigned: The Letter &middot; Challengers: Liner Notes, Bookshelf, Monograph</div>
+
+<!-- THE LETTER (ASSIGNED) -->
+<div class="chrome-banner"><span>The Letter <span class="chrome-assigned">&mdash; ASSIGNED</span></span><span class="chrome-badge">R1 &middot; Built</span></div>
+<div class="lt">
+  <div class="lt-body">
+    <p class="lt-greeting">Dear visitor,</p>
+    <h1 class="lt-name">Jamie</h1>
+    <p class="lt-statement">I build things that reward attention &mdash; software, systems, and the spaces between them.</p>
+    <hr class="lt-rule">
+    <p class="lt-signoff">Read on, if you like.</p>
+  </div>
+</div>
+
+<!-- THE LINER NOTES -->
+<div class="chrome-banner"><span>The Liner Notes</span><span class="chrome-badge">R1 &middot; Challenger</span></div>
+<div class="ln">
+  <div class="ln-body">
+    <div class="ln-credits"><span class="ln-credit-label">Role</span> Staff Engineer &middot; <span class="ln-credit-label">Craft</span> Design Systems &middot; Platform &middot; Product &middot; <span class="ln-credit-label">Location</span> Where the work is</div>
+    <h1 class="ln-statement"><em>Attention</em> is the rarest material. I build things that earn it.</h1>
+    <div class="ln-photo"></div>
+    <ul class="ln-tracklist">
+      <li class="ln-track"><span class="ln-track-num">01</span><span class="ln-track-title">Design System Infrastructure</span><span class="ln-track-note">40+ teams</span></li>
+      <li class="ln-track"><span class="ln-track-num">02</span><span class="ln-track-title">Developer Platform</span><span class="ln-track-note">200+ engineers</span></li>
+      <li class="ln-track"><span class="ln-track-num">03</span><span class="ln-track-title">Product Rebuild</span><span class="ln-track-note">Millions of users</span></li>
+      <li class="ln-track"><span class="ln-track-num">04</span><span class="ln-track-title">What I Believe</span><span class="ln-track-note">A short essay</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- THE BOOKSHELF -->
+<div class="chrome-banner"><span>The Bookshelf</span><span class="chrome-badge">R1 &middot; Challenger</span></div>
+<div class="bs">
+  <div class="bs-body">
+    <div class="bs-top"><div class="bs-name">Jamie</div><div class="bs-nav"><span>shelf</span> &middot; index &middot; guestbook</div></div>
+    <p class="bs-label">On the shelf</p>
+    <div class="bs-shelf">
+      <div><div class="bs-object-frame"><svg viewBox="0 0 24 24" fill="none" stroke="#8c7e6e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div><div class="bs-object-name">Design System</div><div class="bs-object-note">40 teams &middot; 2023&ndash;</div></div>
+      <div><div class="bs-object-frame"><svg viewBox="0 0 24 24" fill="none" stroke="#8c7e6e" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="bs-object-name">Dev Platform</div><div class="bs-object-note">200 eng &middot; 2021&ndash;23</div></div>
+      <div><div class="bs-object-frame"><svg viewBox="0 0 24 24" fill="none" stroke="#8c7e6e" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="bs-object-name">Product Rebuild</div><div class="bs-object-note">Millions &middot; 2019&ndash;21</div></div>
+      <div><div class="bs-object-frame"><svg viewBox="0 0 24 24" fill="none" stroke="#8c7e6e" stroke-width="1.5"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div><div class="bs-object-name">What I believe</div><div class="bs-object-note">A short essay</div></div>
+    </div>
+    <div class="bs-divider"></div>
+    <p class="bs-shelf-label">Recently handled</p>
+    <div class="bs-tools"><div><strong>TS</strong> &nbsp;Rust</div><div><strong>React</strong> &nbsp;Svelte</div><div><strong>Figma</strong> &nbsp;Token CSS</div><div><strong>Node</strong> &nbsp;Go</div></div>
+  </div>
+</div>
+
+<!-- THE MONOGRAPH -->
+<div class="chrome-banner"><span>The Monograph</span><span class="chrome-badge">R1 &middot; Challenger</span></div>
+<div class="mn">
+  <div class="mn-hero"><div class="mn-hero-inner">
+    <p class="mn-plate">Plate I &mdash; Introduction</p>
+    <h1 class="mn-title">Jamie</h1>
+    <p class="mn-sub">A survey of work in design systems, platform engineering, and product architecture, 2019&ndash;present.</p>
+  </div></div>
+  <div class="mn-index">
+    <div class="mn-index-item"><p class="mn-index-num">II</p><h3 class="mn-index-heading">Principles</h3><p class="mn-index-desc">What guides the work &mdash; beliefs about craft, attention, and what ships.</p></div>
+    <div class="mn-index-item"><p class="mn-index-num">III</p><h3 class="mn-index-heading">Built Work</h3><p class="mn-index-desc">Design systems, developer platforms, and consumer products at scale.</p></div>
+    <div class="mn-index-item"><p class="mn-index-num">IV</p><h3 class="mn-index-heading">Chronology</h3><p class="mn-index-desc">Professional timeline with context and contribution notes.</p></div>
+    <div class="mn-index-item"><p class="mn-index-num">V</p><h3 class="mn-index-heading">Index &amp; Contact</h3><p class="mn-index-desc">Complete project register and methods of correspondence.</p></div>
+  </div>
+  <div class="mn-footer"><span>Monograph &numero; 001</span><span>Always under revision</span></div>
+</div>
+
+<!-- ═══════════ ROUND 2 ═══════════ -->
+<div class="round-header" id="r2">Round 2 &mdash; Seed a0c0fa1b &mdash; Assigned: The Map Room &middot; Challengers: Herbarium, Constellation Chart, Telegram</div>
+
+<!-- THE MAP ROOM (ASSIGNED) -->
+<div class="chrome-banner"><span>The Map Room <span class="chrome-assigned">&mdash; ASSIGNED</span></span><span class="chrome-badge">R2 &middot; Index 4</span></div>
+<div class="mr">
+  <div class="mr-grid"></div>
+  <div class="mr-body">
+    <div class="mr-topobar"><div class="mr-coords">51&deg;30&prime;N &middot; 0&deg;07&prime;W &middot; ELEV. PRESENT</div><div class="mr-scale">1:1 <span class="mr-scale-bar"></span> LIFE SIZE</div></div>
+    <div class="mr-compass"><div class="mr-compass-rose"><div class="mr-compass-ring"></div><div class="mr-compass-n">N</div><div class="mr-compass-s">S</div><div class="mr-compass-e">E</div><div class="mr-compass-w">W</div><div class="mr-compass-needle"></div></div></div>
+    <div class="mr-title-block"><p class="mr-territory-label">Survey of the territory of</p><h1 class="mr-title">Jamie</h1><p class="mr-subtitle">A cartographic record of work in design systems, platform engineering, and product architecture.</p></div>
+    <div class="mr-legend"><div><span class="mr-legend-dot" style="background:#c4553d"></span>Primary work</div><div><span class="mr-legend-dot" style="background:#5b7fa5"></span>Infrastructure</div><div><span class="mr-legend-dot" style="background:#8b7355"></span>Product</div><div><span class="mr-legend-dot" style="background:#7a9b6a"></span>Principles</div></div>
+    <div class="mr-contours">
+      <div class="mr-contour"><div class="mr-contour-elevation">&#9650; 1200m</div><div class="mr-contour-name">Design System Infrastructure</div><div class="mr-contour-desc">Token architecture &amp; component library for 40+ product teams. The highest ground.</div><div class="mr-contour-depth">Surveyed 2023&ndash;present</div></div>
+      <div class="mr-contour"><div class="mr-contour-elevation">&#9650; 980m</div><div class="mr-contour-name">Developer Platform</div><div class="mr-contour-desc">CI/CD &amp; test environments for 200+ engineers. Built the roads everyone drives on.</div><div class="mr-contour-depth">Surveyed 2021&ndash;2023</div></div>
+      <div class="mr-contour"><div class="mr-contour-elevation">&#9650; 840m</div><div class="mr-contour-name">Consumer Product Rebuild</div><div class="mr-contour-desc">Front-end architecture from zero. Millions of users.</div><div class="mr-contour-depth">Surveyed 2019&ndash;2021</div></div>
+      <div class="mr-contour"><div class="mr-contour-elevation">&#9632; Base</div><div class="mr-contour-name">What I Believe</div><div class="mr-contour-desc">Good work outlasts the tools that made it. The terrain shapes the map.</div><div class="mr-contour-depth">Established before the first survey</div></div>
+    </div>
+    <div class="mr-footer">Cartography by JSH &middot; Projection: Personal</div>
+  </div>
+</div>
+
+<!-- THE HERBARIUM -->
+<div class="chrome-banner"><span>The Herbarium</span><span class="chrome-badge">R2 &middot; Challenger</span></div>
+<div class="hb">
+  <div class="hb-body">
+    <div class="hb-header">
+      <div class="hb-taxonomy"><strong>Kingdom:</strong> Software<br><strong>Phylum:</strong> Engineering<br><strong>Class:</strong> Front-End<br><strong>Order:</strong> Design Systems<br><strong>Family:</strong> Product</div>
+      <h1 class="hb-title">Jamie<br>Sy Ho</h1>
+    </div>
+    <div class="hb-specimens">
+      <div class="hb-specimen"><div class="hb-specimen-press"><svg viewBox="0 0 24 24" fill="none" stroke="#4a6b3a" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div><div class="hb-specimen-label"><div class="hb-specimen-name">Systema Designis</div><div class="hb-specimen-meta">Coll. <span>2023</span> &middot; Habitat: <span>40+ teams</span><br>Specimen: Token architecture</div></div></div>
+      <div class="hb-specimen"><div class="hb-specimen-press"><svg viewBox="0 0 24 24" fill="none" stroke="#4a6b3a" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="hb-specimen-label"><div class="hb-specimen-name">Platforma Interna</div><div class="hb-specimen-meta">Coll. <span>2021&ndash;23</span> &middot; Habitat: <span>200+ eng</span><br>Specimen: CI/CD &amp; tooling</div></div></div>
+      <div class="hb-specimen"><div class="hb-specimen-press"><svg viewBox="0 0 24 24" fill="none" stroke="#4a6b3a" stroke-width="1.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="hb-specimen-label"><div class="hb-specimen-name">Productus Reconstructus</div><div class="hb-specimen-meta">Coll. <span>2019&ndash;21</span> &middot; Habitat: <span>Millions</span><br>Specimen: Front-end architecture</div></div></div>
+      <div class="hb-specimen"><div class="hb-specimen-press"><svg viewBox="0 0 24 24" fill="none" stroke="#4a6b3a" stroke-width="1.2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div><div class="hb-specimen-label"><div class="hb-specimen-name">Principia Personalis</div><div class="hb-specimen-meta">Coll. <span>Ongoing</span> &middot; Habitat: <span>This site</span><br>Specimen: What guides the work</div></div></div>
+    </div>
+    <div class="hb-note">All specimens collected, pressed, and labeled by hand. Handle with care.</div>
+  </div>
+</div>
+
+<!-- THE CONSTELLATION CHART -->
+<div class="chrome-banner"><span>The Constellation Chart</span><span class="chrome-badge">R2 &middot; Challenger</span></div>
+<div class="cc">
+  <div class="cc-body">
+    <p class="cc-constellation-name">Constellation &middot; Sy Ho</p>
+    <h1 class="cc-title">Patterns emerge <em>in the dark</em> when you stop and look</h1>
+    <div class="cc-constellation">
+      <div class="cc-star"><div class="cc-star-dot"></div><div class="cc-star-label">Alpha</div><div class="cc-star-name">Design Systems</div></div>
+      <div class="cc-star"><div class="cc-star-dot"></div><div class="cc-star-label">Beta</div><div class="cc-star-name">Dev Platform</div></div>
+      <div class="cc-star"><div class="cc-star-dot" style="background:#e8a830;box-shadow:0 0 20px rgba(232,168,48,.6)"></div><div class="cc-star-label">Gamma</div><div class="cc-star-name">Product Rebuild</div></div>
+      <div class="cc-star"><div class="cc-star-dot"></div><div class="cc-star-label">Delta</div><div class="cc-star-name">Principles</div></div>
+      <div class="cc-star"><div class="cc-star-dot" style="width:6px;height:6px;background:#7a8faa;box-shadow:0 0 8px rgba(122,143,170,.4)"></div><div class="cc-star-label">Epsilon</div><div class="cc-star-name">Contact</div></div>
+    </div>
+    <p class="cc-footer">Right Ascension: present &middot; Declination: wherever the work is</p>
+  </div>
+</div>
+
+<!-- THE TELEGRAM -->
+<div class="chrome-banner"><span>The Telegram</span><span class="chrome-badge">R2 &middot; Challenger</span></div>
+<div class="tg">
+  <div class="tg-body">
+    <div class="tg-header-strip"><span>URGENT</span><span>MSG NO. 001</span><span>ATTN: VISITOR</span></div>
+    <div class="tg-dispatch">
+      <p class="tg-dispatch-to">TO WHOM IT MAY CONCERN</p>
+      <div class="tg-dispatch-body"><strong>JAMIE SY HO</strong> &mdash; ENGINEER. BUILDS DESIGN SYSTEMS, PLATFORMS, AND PRODUCTS THAT LAST. BELIEVES SOFTWARE IS ATTENTION PAID TO SOMEONE ELSE&rsquo;S PROBLEM. AVAILABLE FOR WORK THAT MATTERS.</div>
+      <p class="tg-dispatch-from">&mdash; JSH, PRESENT DAY</p>
+    </div>
+    <div class="tg-rule"></div>
+    <ul class="tg-bulletins">
+      <li class="tg-bulletin"><span class="tg-bulletin-time">2023&ndash;NOW</span><div><div class="tg-bulletin-headline">DESIGN SYSTEM INFRASTRUCTURE</div><div class="tg-bulletin-brief">Token pipeline, components, docs. 40+ teams. Delivery time reduced by one third.</div></div></li>
+      <li class="tg-bulletin"><span class="tg-bulletin-time">2021&ndash;23</span><div><div class="tg-bulletin-headline">DEVELOPER PRODUCTIVITY PLATFORM</div><div class="tg-bulletin-brief">CI/CD, test environments, code review. 200+ engineers.</div></div></li>
+      <li class="tg-bulletin"><span class="tg-bulletin-time">2019&ndash;21</span><div><div class="tg-bulletin-headline">CONSUMER PRODUCT REBUILD</div><div class="tg-bulletin-brief">Front-end from zero. Performance, a11y, components. Millions of users.</div></div></li>
+      <li class="tg-bulletin"><span class="tg-bulletin-time">ALWAYS</span><div><div class="tg-bulletin-headline">WHAT I BELIEVE</div><div class="tg-bulletin-brief">Good work outlasts the tools that made it. Craft is a form of respect.</div></div></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════ ROUND 3 ═══════════ -->
+<div class="round-header" id="r3">Round 3 &mdash; Seed a0c0fa1b &mdash; Assigned: The Illuminated Manuscript &middot; Challengers: Trading Floor, Racing Dashboard, Wanted Poster</div>
+
+<!-- THE ILLUMINATED MANUSCRIPT (ASSIGNED) -->
+<div class="chrome-banner"><span>The Illuminated Manuscript <span class="chrome-assigned">&mdash; ASSIGNED</span></span><span class="chrome-badge">R3 &middot; Index 4</span></div>
+<div class="im">
+  <div class="im-body">
+    <p><span class="im-initial">H</span></p>
+    <h1 class="im-title">ere begins the record of Jamie, engineer and maker of things that last.</h1>
+    <div class="im-ornament">&mdash; &Dagger; &mdash;</div>
+    <div class="im-passage">
+      <p>Good work outlasts the tools that made it. I care about the thing that <em>ships</em> &mdash; the artifact someone holds, reads, or uses &mdash; more than the stack that produced it. That instinct has carried me through design systems, platform engineering, and product work, always circling the same question: what makes something worth keeping?</p>
+    </div>
+    <div class="im-miniature">
+      <div class="im-miniature-grid">
+        <div class="im-miniature-item"><div class="im-miniature-label">Anno MMXXIII</div><div class="im-miniature-name">Design System</div><div class="im-miniature-note">40+ product teams</div></div>
+        <div class="im-miniature-item"><div class="im-miniature-label">Anno MMXXI&ndash;III</div><div class="im-miniature-name">Dev Platform</div><div class="im-miniature-note">200+ engineers</div></div>
+        <div class="im-miniature-item"><div class="im-miniature-label">Anno MMXIX&ndash;XXI</div><div class="im-miniature-name">Product Rebuild</div><div class="im-miniature-note">Millions of users</div></div>
+        <div class="im-miniature-item"><div class="im-miniature-label">Semper</div><div class="im-miniature-name">Principles</div><div class="im-miniature-note">What guides the work</div></div>
+      </div>
+    </div>
+    <div class="im-passage">
+      <p>I work best where <em>craft and code meet</em> &mdash; building interfaces that feel inevitable, tools that stay out of the way, and systems that let others move faster. The through-line is a conviction that software, at its best, is a form of attention paid to someone else&rsquo;s problem.</p>
+    </div>
+    <div class="im-colophon">Illuminated by JSH &middot; Scriptorium of the present day &middot; Gloria in excelsis codice</div>
+  </div>
+</div>
+
+<!-- THE TRADING FLOOR -->
+<div class="chrome-banner"><span>The Trading Floor</span><span class="chrome-badge">R3 &middot; Challenger</span></div>
+<div class="tf">
+  <div class="tf-body">
+    <div class="tf-ticker">JSH ▲2.4 &middot; DSYS ▲1.8 &middot; PLAT ▲0.9 &middot; PROD ▲3.1 &middot; PRIN — &middot; VOL: STEADY &middot; JSH ▲2.4 &middot; DSYS ▲1.8 &middot; PLAT ▲0.9</div>
+    <div class="tf-header"><div class="tf-terminal">JSH:NYC&gt;</div><div class="tf-time">MARKET OPEN &middot; 09:42:17 EST</div></div>
+    <div class="tf-big-quote"><div class="tf-symbol">JSH</div><div class="tf-price">247.80</div><div class="tf-change">▲ 2.40 (0.98%)</div></div>
+    <div class="tf-sectors">
+      <div class="tf-sector"><div class="tf-sector-tag">DESIGN.SYS</div><div class="tf-sector-name">Design Infrastructure</div><div class="tf-sector-detail"><span>▲1.8</span> 40 teams &middot; 2023&ndash;</div></div>
+      <div class="tf-sector"><div class="tf-sector-tag">PLATFORM</div><div class="tf-sector-name">Dev Platform</div><div class="tf-sector-detail"><span>▲0.9</span> 200 eng &middot; 2021&ndash;23</div></div>
+      <div class="tf-sector"><div class="tf-sector-tag">PRODUCT</div><div class="tf-sector-name">Consumer Rebuild</div><div class="tf-sector-detail"><span>▲3.1</span> Millions &middot; 2019&ndash;21</div></div>
+      <div class="tf-sector"><div class="tf-sector-tag">PRINCIPLES</div><div class="tf-sector-name">What I Believe</div><div class="tf-sector-detail"><span>&mdash;</span> Always held</div></div>
+    </div>
+    <div class="tf-orderbook"><div class="tf-orderbook-title">ORDER BOOK &mdash; OUTSTANDING</div>
+      <div class="tf-order"><span>DESIGN_SYS</span><span class="tf-order-resolved">RESOLVED</span></div>
+      <div class="tf-order"><span>DEV_PLATFORM</span><span class="tf-order-resolved">RESOLVED</span></div>
+      <div class="tf-order"><span>PRODUCT_REBUILD</span><span class="tf-order-resolved">RESOLVED</span></div>
+      <div class="tf-order"><span>NEXT_OPPORTUNITY</span><span>OPEN</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- THE RACING DASHBOARD -->
+<div class="chrome-banner"><span>The Racing Dashboard</span><span class="chrome-badge">R3 &middot; Challenger</span></div>
+<div class="rd">
+  <div class="rd-body">
+    <div class="rd-top-bar"><div class="rd-driver">DRIVER: JAMIE SY HO</div><div class="rd-lap">LAP <span>/ CAREER</span></div></div>
+    <div class="rd-telemetry">
+      <div class="rd-gauge"><div class="rd-gauge-label">PROJECTS SHIPPED</div><div class="rd-gauge-value good">12</div></div>
+      <div class="rd-gauge"><div class="rd-gauge-label">TEAMS SERVED</div><div class="rd-gauge-value warn">240+</div></div>
+      <div class="rd-gauge"><div class="rd-gauge-label">USERS REACHED</div><div class="rd-gauge-value hot">8.2M</div></div>
+    </div>
+    <div class="rd-sectors">
+      <div class="rd-sector green"><div class="rd-sector-time">0:23.4</div><div class="rd-sector-label">DESIGN SYS</div></div>
+      <div class="rd-sector yellow"><div class="rd-sector-time">0:31.7</div><div class="rd-sector-label">DEV PLATFORM</div></div>
+      <div class="rd-sector purple"><div class="rd-sector-time">0:18.9</div><div class="rd-sector-label">PRODUCT</div></div>
+    </div>
+    <div class="rd-projects">
+      <div class="rd-project"><div class="rd-project-header"><div class="rd-project-name">Design Infrastructure</div><div class="rd-project-time">2023&ndash;NOW</div></div><div class="rd-project-bar"><div class="rd-project-fill" style="width:100%;background:#00cc66"></div></div><div class="rd-project-note">40 teams &middot; component architecture</div></div>
+      <div class="rd-project"><div class="rd-project-header"><div class="rd-project-name">Developer Platform</div><div class="rd-project-time">2021&ndash;2023</div></div><div class="rd-project-bar"><div class="rd-project-fill" style="width:100%;background:#ffaa00"></div></div><div class="rd-project-note">200 eng &middot; CI/CD automation</div></div>
+      <div class="rd-project"><div class="rd-project-header"><div class="rd-project-name">Product Rebuild</div><div class="rd-project-time">2019&ndash;2021</div></div><div class="rd-project-bar"><div class="rd-project-fill" style="width:100%;background:#aa55ff"></div></div><div class="rd-project-note">Millions &middot; front-end architecture</div></div>
+      <div class="rd-project"><div class="rd-project-header"><div class="rd-project-name">What I Believe</div><div class="rd-project-time">ALWAYS</div></div><div class="rd-project-bar"><div class="rd-project-fill" style="width:100%;background:#666"></div></div><div class="rd-project-note">Craft is respect for the user</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- THE WANTED POSTER -->
+<div class="chrome-banner"><span>The Wanted Poster</span><span class="chrome-badge">R3 &middot; Challenger</span></div>
+<div class="wp">
+  <div class="wp-body">
+    <div class="wp-ornament-top">&Dagger;</div>
+    <div class="wp-header"><h1 class="wp-wanted">WANTED</h1><p class="wp-sub">For Exceptional Engineering</p></div>
+    <div class="wp-portrait"></div>
+    <h2 class="wp-name">JAMIE SY HO</h2>
+    <p class="wp-desc"><strong>Known for:</strong> Design systems that scale, platforms that empower, and products that <strong>reward attention</strong>. Operates at the intersection of craft and code. Approaches every problem as if someone will live with the result.</p>
+    <p class="wp-aliases">Also known as: <span>Staff Engineer</span> &middot; <span>Design Systems Lead</span> &middot; <span>Platform Builder</span></p>
+    <div class="wp-reward"><p class="wp-reward-label">Reward</p><p class="wp-reward-amount">YOUR ATTENTION</p></div>
+    <p class="wp-footer">Last seen: Building things that last &middot; Contact: jamie@example.com</p>
+  </div>
+</div>
+
+</body>
+</html>

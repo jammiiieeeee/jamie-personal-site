@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fluid Dark Mockups — Jamie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Syne:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .chrome-banner {
+    position: sticky; top: 0; z-index: 20;
+    background: #0a0a0a; color: #666;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.55rem 1rem; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .chrome-badge { font-size: 0.5625rem; padding: 0.12rem 0.45rem; border-radius: 2px; background: #1a1a1a; color: #555; }
+  .chrome-pinned { color: #a0d0ff; }
+  .chrome-nav {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 20; display: flex; gap: 0.5rem;
+  }
+  .chrome-nav a {
+    display: inline-block; background: rgba(10,10,10,0.9); color: #666;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.5625rem; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none; padding: 0.45rem 0.7rem;
+    border-radius: 3px; border: 1px solid #222;
+    backdrop-filter: blur(8px);
+  }
+  .chrome-nav a:hover { color: #fff; border-color: #444; }
+
+  .round-header {
+    background: #050505; color: #444;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.5625rem; letter-spacing: 0.16em;
+    text-transform: uppercase; text-align: center; padding: 0.45rem;
+    border-bottom: 1px solid #111;
+  }
+
+  /* ══════ INK BASIN (USER-PINNED) ══════ */
+  .ib {
+    background: #050508; color: #c0c8d8; min-height: 100vh;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    position: relative; overflow: hidden;
+  }
+  .ib-pool {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  }
+  .ib-ripple {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(120,150,200,0.15);
+    animation: ibRipple 8s ease-out infinite;
+  }
+  .ib-ripple:nth-child(1) { width: 600px; height: 600px; top: -200px; left: -100px; animation-delay: 0s; }
+  .ib-ripple:nth-child(2) { width: 400px; height: 400px; bottom: -100px; right: -50px; animation-delay: 2s; }
+  .ib-ripple:nth-child(3) { width: 300px; height: 300px; top: 40%; left: 60%; animation-delay: 4s; }
+  .ib-ripple:nth-child(4) { width: 500px; height: 500px; bottom: 20%; left: -150px; animation-delay: 6s; }
+  @keyframes ibRipple {
+    0% { transform: scale(0.6); opacity: 0.6; }
+    50% { transform: scale(1.4); opacity: 0.1; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+  .ib-body {
+    padding: clamp(2.5rem, 10vw, 8rem) clamp(1.5rem, 8vw, 6rem);
+    max-width: 720px; margin: 0 auto; position: relative; z-index: 1;
+  }
+  .ib-surface {
+    text-align: center; margin-bottom: 3rem;
+  }
+  .ib-droplet {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(160,200,240,0.6), rgba(100,140,200,0.3), transparent);
+    margin: 0 auto 3rem;
+    animation: ibDrop 4s ease-in-out infinite;
+  }
+  @keyframes ibDrop {
+    0%, 100% { opacity: 0; transform: translateY(-10px); }
+    30%, 70% { opacity: 1; }
+    50% { transform: translateY(8px); }
+  }
+  .ib-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 400; font-style: italic;
+    line-height: 1; letter-spacing: -0.015em;
+    color: #e8f0ff;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 80px rgba(120,160,220,0.15), 0 2px 4px rgba(0,0,0,0.5);
+  }
+  .ib-line {
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    color: #7a8ea8; font-style: italic;
+    max-width: 30ch; margin: 0 auto;
+    line-height: 1.5;
+  }
+  .ib-line em { color: #b0c8e8; }
+  .ib-depth {
+    margin-top: 4rem; padding-top: 3rem;
+    border-top: 1px solid rgba(120,150,200,0.1);
+  }
+  .ib-entry {
+    display: flex; gap: 1.5rem; padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(120,150,200,0.06);
+    align-items: baseline;
+  }
+  .ib-entry:last-child { border-bottom: none; }
+  .ib-entry-year {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 0.625rem; letter-spacing: 0.12em; color: #4a5a70;
+    min-width: 6rem; padding-top: 0.15rem;
+  }
+  .ib-entry-title {
+    font-size: 1.25rem; font-style: italic; color: #c8d8f0; margin-bottom: 0.2rem;
+  }
+  .ib-entry-detail {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 0.6875rem; color: #5a6a80; letter-spacing: 0.04em; line-height: 1.5;
+  }
+  .ib-sink {
+    text-align: center; padding-top: 4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem; letter-spacing: 0.1em; color: #3a4a5a;
+  }
+
+  /* ══════ MAGNETIC FLUID (ASSIGNED) ══════ */
+  .mf {
+    background: #060609; color: #c0c8d8; min-height: 100vh;
+    font-family: 'Syne', system-ui, sans-serif;
+    position: relative; overflow: hidden;
+  }
+  .mf-field {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    opacity: 0.06;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(140,180,220,0.8) 0%, transparent 50%),
+      radial-gradient(circle at 30% 70%, rgba(120,160,200,0.5) 0%, transparent 40%),
+      radial-gradient(circle at 70% 30%, rgba(160,200,240,0.4) 0%, transparent 45%);
+  }
+  .mf-body {
+    padding: clamp(2rem, 6vw, 5rem) clamp(1.5rem, 6vw, 4rem);
+    max-width: 800px; margin: 0 auto; position: relative; z-index: 1;
+  }
+  .mf-spike-cluster {
+    margin-bottom: 3rem;
+    position: relative;
+    min-height: 300px;
+  }
+  .mf-spike {
+    position: absolute;
+    width: 1px;
+    background: linear-gradient(to top, rgba(140,180,220,0.4), rgba(180,210,240,0.8), transparent);
+    transform-origin: bottom center;
+  }
+  .mf-spike:nth-child(1) { left: 5%; height: 240px; transform: rotate(-8deg); }
+  .mf-spike:nth-child(2) { left: 15%; height: 180px; transform: rotate(-3deg); }
+  .mf-spike:nth-child(3) { left: 25%; height: 280px; transform: rotate(0deg); }
+  .mf-spike:nth-child(4) { left: 40%; height: 200px; transform: rotate(4deg); }
+  .mf-spike:nth-child(5) { left: 55%; height: 260px; transform: rotate(6deg); }
+  .mf-spike:nth-child(6) { left: 65%; height: 160px; transform: rotate(2deg); }
+  .mf-spike:nth-child(7) { left: 75%; height: 220px; transform: rotate(-2deg); }
+  .mf-spike:nth-child(8) { left: 85%; height: 190px; transform: rotate(-6deg); }
+  .mf-spike-ball {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 3px; height: 3px; border-radius: 50%;
+    background: rgba(200,225,255,0.9);
+    box-shadow: 0 0 6px rgba(180,210,255,0.5);
+  }
+  .mf-title {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 700; letter-spacing: -0.03em;
+    line-height: 0.95; color: #e8f0ff;
+    max-width: 8ch; margin-bottom: 1rem;
+    text-shadow: 0 0 60px rgba(140,180,220,0.15);
+  }
+  .mf-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem; letter-spacing: 0.1em; color: #5a6e82;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+  }
+  .mf-nodes {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: rgba(140,180,220,0.05);
+    margin-bottom: 3rem;
+  }
+  .mf-node {
+    background: #08080c; padding: 1.5rem; position: relative;
+  }
+  .mf-node::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(160,200,240,0.2), transparent);
+  }
+  .mf-node-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5rem; letter-spacing: 0.14em; color: #4a5a6e;
+    text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+  .mf-node-title {
+    font-size: 1.125rem; font-weight: 600; color: #d0ddf0; margin-bottom: 0.25rem;
+  }
+  .mf-node-detail {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem; color: #5a6a7a; letter-spacing: 0.04em; line-height: 1.5;
+  }
+  .mf-attract {
+    text-align: center; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem; letter-spacing: 0.12em; color: #3a4a5a;
+    padding: 2rem 0;
+  }
+
+  /* ══════ THE OIL SLICK ══════ */
+  .os {
+    background: #060607; color: #b0b8c0; min-height: 100vh;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    position: relative; overflow: hidden;
+  }
+  .os-sheen {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    opacity: 0.25;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(80,120,200,0.6) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, rgba(140,60,180,0.5) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 80%, rgba(60,160,140,0.4) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 20%, rgba(200,140,60,0.4) 0%, transparent 50%);
+  }
+  .os-body {
+    padding: clamp(2.5rem, 8vw, 6rem) clamp(1.5rem, 6vw, 4rem);
+    max-width: 780px; margin: 0 auto; position: relative; z-index: 1;
+  }
+  .os-gloss {
+    text-align: center; margin-bottom: 3rem;
+  }
+  .os-glint {
+    width: 120px; height: 2px;
+    margin: 0 auto 2.5rem;
+    background: linear-gradient(to right, transparent, rgba(180,200,220,0.4), rgba(140,180,220,0.6), rgba(180,200,220,0.4), transparent);
+  }
+  .os-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 400; font-style: italic;
+    color: #e0e8f0; letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 100px rgba(100,150,200,0.1);
+  }
+  .os-tag {
+    font-size: 0.75rem; letter-spacing: 0.15em; color: #5a7088;
+    text-transform: uppercase; margin-bottom: 3rem;
+  }
+  .os-bands {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .os-band {
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid rgba(120,150,180,0.06);
+    display: flex; gap: 2rem; align-items: baseline;
+    position: relative;
+    overflow: hidden;
+  }
+  .os-band::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(80,120,180,0.04), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .os-band:hover::before { opacity: 1; }
+  .os-band-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem; color: #4a5a6a; min-width: 1.5rem;
+  }
+  .os-band-title {
+    font-size: 1.0625rem; font-weight: 500; color: #d0d8e8; margin-bottom: 0.15rem;
+  }
+  .os-band-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem; color: #5a6a7a; letter-spacing: 0.04em;
+  }
+  .os-signoff {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem; letter-spacing: 0.1em; color: #4a5a6a;
+    text-align: center; padding-top: 3rem;
+  }
+
+  /* ══════ THE SMOKE CHAMBER ══════ */
+  .sc {
+    background: #0a0a0c; color: #a0a8b0; min-height: 100vh;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    position: relative; overflow: hidden;
+  }
+  .sc-volumetric {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    opacity: 0.12;
+  }
+  .sc-beam {
+    position: absolute;
+    background: linear-gradient(to bottom, transparent, rgba(180,140,100,0.5), rgba(160,120,60,0.2), transparent);
+    transform: rotate(-12deg);
+    filter: blur(60px);
+  }
+  .sc-beam:nth-child(1) { width: 300px; height: 120%; top: -10%; left: 20%; }
+  .sc-beam:nth-child(2) { width: 200px; height: 100%; top: -5%; left: 55%; transform: rotate(8deg); }
+  .sc-beam:nth-child(3) { width: 150px; height: 90%; top: 0; left: 75%; transform: rotate(15deg); opacity: 0.07; }
+  .sc-particles {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  }
+  .sc-particle {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: rgba(180,160,120,0.4);
+    border-radius: 50%;
+    animation: scFloat 12s ease-in-out infinite;
+  }
+  .sc-particle:nth-child(1) { left: 10%; top: 30%; animation-delay: 0s; }
+  .sc-particle:nth-child(2) { left: 30%; top: 60%; animation-delay: 2s; }
+  .sc-particle:nth-child(3) { left: 50%; top: 20%; animation-delay: 4s; }
+  .sc-particle:nth-child(4) { left: 70%; top: 50%; animation-delay: 6s; }
+  .sc-particle:nth-child(5) { left: 85%; top: 35%; animation-delay: 8s; }
+  .sc-particle:nth-child(6) { left: 20%; top: 80%; animation-delay: 3s; }
+  @keyframes scFloat {
+    0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+    20% { opacity: 0.6; }
+    50% { transform: translateY(-30px) translateX(15px); }
+    80% { opacity: 0.6; }
+  }
+  .sc-body {
+    padding: clamp(2.5rem, 10vw, 8rem) clamp(1.5rem, 8vw, 6rem);
+    max-width: 680px; margin: 0 auto; position: relative; z-index: 1;
+    text-align: center;
+  }
+  .sc-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.75rem, 8vw, 5.5rem);
+    font-weight: 400; font-style: italic;
+    color: #d8c8a8; margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+    text-shadow: 0 0 120px rgba(180,140,100,0.15);
+  }
+  .sc-beam-line {
+    width: 1px; height: 80px;
+    margin: 0 auto 2rem;
+    background: linear-gradient(to bottom, rgba(180,140,100,0.5), transparent);
+  }
+  .sc-passage {
+    font-size: 1.15rem; line-height: 1.7; color: #a09888;
+    max-width: 38ch; margin: 0 auto 3rem;
+    font-style: italic;
+  }
+  .sc-passage em { color: #d4c098; }
+  .sc-entries {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; max-width: 540px; margin: 0 auto;
+  }
+  .sc-entry {
+    padding: 1.25rem;
+    border: 1px solid rgba(180,140,100,0.08);
+    text-align: left;
+  }
+  .sc-entry-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5rem; letter-spacing: 0.12em; color: #5a4a30;
+    text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+  .sc-entry-title {
+    font-size: 1.0625rem; color: #c8b898; font-style: italic; margin-bottom: 0.25rem;
+  }
+  .sc-entry-note {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 0.625rem; color: #6a5a40; line-height: 1.4;
+  }
+  .sc-fade {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem; letter-spacing: 0.12em; color: #4a3a20;
+    text-align: center; padding-top: 3rem;
+  }
+  @media (max-width: 600px) {
+    .sc-entries { grid-template-columns: 1fr; }
+    .mf-nodes { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="chrome-nav">
+  <a href="#">Top</a>
+  <a href="#pinned">Pinned</a>
+  <a href="#assigned">Assigned</a>
+  <a href="#challengers">Challengers</a>
+</div>
+
+<div class="round-header">Fluid / Dark Roll &mdash; Seed a0c0fa1b &mdash; User pinned: Ink Basin</div>
+
+<!-- ══════ THE INK BASIN (USER-PINNED) ══════ -->
+<div class="chrome-banner" id="pinned">
+  <span>The Ink Basin <span class="chrome-pinned">&mdash; USER-PINNED</span></span>
+  <span class="chrome-badge">Built</span>
+</div>
+
+<div class="ib">
+  <div class="ib-pool">
+    <div class="ib-ripple"></div>
+    <div class="ib-ripple"></div>
+    <div class="ib-ripple"></div>
+    <div class="ib-ripple"></div>
+  </div>
+  <div class="ib-body">
+    <div class="ib-surface">
+      <div class="ib-droplet"></div>
+      <h1 class="ib-name">Jamie</h1>
+      <p class="ib-line">I build things that <em>reward attention</em> — software, systems, and the spaces between them.</p>
+    </div>
+    <div class="ib-depth">
+      <div class="ib-entry">
+        <span class="ib-entry-year">2023&ndash;Now</span>
+        <div>
+          <div class="ib-entry-title">Design System Infrastructure</div>
+          <div class="ib-entry-detail">Token architecture, component library, documentation. 40+ product teams. Delivery time reduced by a third.</div>
+        </div>
+      </div>
+      <div class="ib-entry">
+        <span class="ib-entry-year">2021&ndash;2023</span>
+        <div>
+          <div class="ib-entry-title">Developer Platform</div>
+          <div class="ib-entry-detail">CI/CD automation, ephemeral test environments, code review infrastructure for 200+ engineers.</div>
+        </div>
+      </div>
+      <div class="ib-entry">
+        <span class="ib-entry-year">2019&ndash;2021</span>
+        <div>
+          <div class="ib-entry-title">Consumer Product Rebuild</div>
+          <div class="ib-entry-detail">Front-end architecture from zero. Performance budgets, accessibility targets, millions of users.</div>
+        </div>
+      </div>
+      <div class="ib-entry">
+        <span class="ib-entry-year">Always</span>
+        <div>
+          <div class="ib-entry-title">What I believe</div>
+          <div class="ib-entry-detail">Good work outlasts the tools that made it. Software, at its best, is attention paid to someone else's problem.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ib-sink">Sink in. Stay a while. &mdash; J</div>
+  </div>
+</div>
+
+<!-- ══════ THE MAGNETIC FLUID (ASSIGNED) ══════ -->
+<div class="chrome-banner" id="assigned">
+  <span>The Magnetic Fluid <span class="chrome-assigned" style="color:#f0c060;">&mdash; ASSIGNED (Index 4)</span></span>
+  <span class="chrome-badge">Alt</span>
+</div>
+
+<div class="mf">
+  <div class="mf-field"></div>
+  <div class="mf-body">
+    <div class="mf-spike-cluster">
+      <div class="mf-spike"><div class="mf-spike-ball"></div></div>
+      <div class="mf-spike"><div class="mf-spike-ball"></div></div>
+      <div class="mf-spike"><div class="mf-spike-ball"></div></div>
+      <div class="mf-spike"><div class="mf-spike-ball"></div></div>
+      <div class="mf-spike"><div class="mf-spike-ball"></div></div>
+      <div class="mf-spike"><div class="mf-spike-ball"></div></div>
+      <div class="mf-spike"><div class="mf-spike-ball"></div></div>
+      <div class="mf-spike"><div class="mf-spike-ball"></div></div>
+    </div>
+    <h1 class="mf-title">Jamie</h1>
+    <p class="mf-sub">Field strength: exceptional</p>
+    <div class="mf-nodes">
+      <div class="mf-node">
+        <div class="mf-node-label">Pole N&middot;01</div>
+        <div class="mf-node-title">Design System</div>
+        <div class="mf-node-detail">Token architecture &middot; 40+ teams &middot; 2023&ndash;present</div>
+      </div>
+      <div class="mf-node">
+        <div class="mf-node-label">Pole N&middot;02</div>
+        <div class="mf-node-title">Dev Platform</div>
+        <div class="mf-node-detail">CI/CD &middot; 200+ engineers &middot; 2021&ndash;2023</div>
+      </div>
+      <div class="mf-node">
+        <div class="mf-node-label">Pole N&middot;03</div>
+        <div class="mf-node-title">Product Rebuild</div>
+        <div class="mf-node-detail">Zero-to-one &middot; Millions of users &middot; 2019&ndash;2021</div>
+      </div>
+      <div class="mf-node">
+        <div class="mf-node-label">Pole N&middot;04</div>
+        <div class="mf-node-title">Principles</div>
+        <div class="mf-node-detail">Craft outlasts tools &middot; Always held</div>
+      </div>
+    </div>
+    <div class="mf-attract">&#x2300; ATTRACT &middot; The field is strongest where the work is real</div>
+  </div>
+</div>
+
+<!-- ══════ THE OIL SLICK ══════ -->
+<div class="chrome-banner" id="challengers">
+  <span>The Oil Slick</span>
+  <span class="chrome-badge">Challenger</span>
+</div>
+
+<div class="os">
+  <div class="os-sheen"></div>
+  <div class="os-body">
+    <div class="os-gloss">
+      <div class="os-glint"></div>
+      <h1 class="os-name">Jamie</h1>
+      <p class="os-tag">Engineer &middot; Design Systems &middot; Platform &middot; Product</p>
+    </div>
+    <div class="os-bands">
+      <div class="os-band">
+        <span class="os-band-index">01</span>
+        <div>
+          <div class="os-band-title">Design System Infrastructure</div>
+          <div class="os-band-sub">Component architecture &middot; Token pipeline &middot; 40+ teams &middot; 2023&ndash;present</div>
+        </div>
+      </div>
+      <div class="os-band">
+        <span class="os-band-index">02</span>
+        <div>
+          <div class="os-band-title">Developer Platform</div>
+          <div class="os-band-sub">CI/CD automation &middot; Test environments &middot; 200+ engineers &middot; 2021&ndash;2023</div>
+        </div>
+      </div>
+      <div class="os-band">
+        <span class="os-band-index">03</span>
+        <div>
+          <div class="os-band-title">Consumer Product Rebuild</div>
+          <div class="os-band-sub">Front-end architecture &middot; Millions of users &middot; 2019&ndash;2021</div>
+        </div>
+      </div>
+      <div class="os-band">
+        <span class="os-band-index">04</span>
+        <div>
+          <div class="os-band-title">What I Believe</div>
+          <div class="os-band-sub">Good work outlasts the tools. Craft is attention paid to someone else's problem.</div>
+        </div>
+      </div>
+    </div>
+    <div class="os-signoff">Catch the light. Stay curious.</div>
+  </div>
+</div>
+
+<!-- ══════ THE SMOKE CHAMBER ══════ -->
+<div class="chrome-banner">
+  <span>The Smoke Chamber</span>
+  <span class="chrome-badge">Challenger</span>
+</div>
+
+<div class="sc">
+  <div class="sc-volumetric">
+    <div class="sc-beam"></div>
+    <div class="sc-beam"></div>
+    <div class="sc-beam"></div>
+  </div>
+  <div class="sc-particles">
+    <div class="sc-particle"></div>
+    <div class="sc-particle"></div>
+    <div class="sc-particle"></div>
+    <div class="sc-particle"></div>
+    <div class="sc-particle"></div>
+    <div class="sc-particle"></div>
+  </div>
+  <div class="sc-body">
+    <h1 class="sc-name">Jamie</h1>
+    <div class="sc-beam-line"></div>
+    <p class="sc-passage">Good work outlasts the tools that made it. I build <em>design systems, platforms, and products</em> where craft and code meet — interfaces that feel inevitable, tools that stay out of the way.</p>
+    <div class="sc-entries">
+      <div class="sc-entry">
+        <div class="sc-entry-date">2023&ndash;Now</div>
+        <div class="sc-entry-title">Design System Infrastructure</div>
+        <div class="sc-entry-note">Token architecture, component library. 40+ teams.</div>
+      </div>
+      <div class="sc-entry">
+        <div class="sc-entry-date">2021&ndash;2023</div>
+        <div class="sc-entry-title">Developer Platform</div>
+        <div class="sc-entry-note">CI/CD, test environments. 200+ engineers.</div>
+      </div>
+      <div class="sc-entry">
+        <div class="sc-entry-date">2019&ndash;2021</div>
+        <div class="sc-entry-title">Product Rebuild</div>
+        <div class="sc-entry-note">Front-end from zero. Millions of users.</div>
+      </div>
+      <div class="sc-entry">
+        <div class="sc-entry-date">Always</div>
+        <div class="sc-entry-title">What I Believe</div>
+        <div class="sc-entry-note">Craft is a form of respect for the person on the other side.</div>
+      </div>
+    </div>
+    <div class="sc-fade">The light finds what matters.</div>
+  </div>
+</div>
+
+</body>
+</html>

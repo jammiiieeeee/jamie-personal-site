@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-12T00:00:00Z",
+  "title": "Design System: Jamie",
+  "extensions": {
+    "colorMeta": {
+      "sealing-wax": {
+        "role": "primary",
+        "displayName": "Sealing Wax",
+        "canonical": "#b22234",
+        "tonalRamp": ["#1a0507", "#330a0e", "#4d0f15", "#66141c", "#801923", "#b22234", "#d4253d", "#e8556a", "#f08897", "#f8bbc4"]
+      },
+      "sealing-wax-bright": {
+        "role": "primary",
+        "displayName": "Sealing Wax (Bright)",
+        "canonical": "#d4253d",
+        "tonalRamp": ["#1f0408", "#3e0810", "#5d0c18", "#7c1020", "#9b1428", "#d4253d", "#e04055", "#e86678", "#f099a5", "#f8ccd2"]
+      },
+      "sealing-wax-dim": {
+        "role": "primary",
+        "displayName": "Sealing Wax (Dim)",
+        "canonical": "#8b1a28",
+        "tonalRamp": ["#140406", "#28080c", "#3c0c12", "#501018", "#64141e", "#8b1a28", "#a82a3c", "#c44052", "#d9707e", "#edb0b8"]
+      },
+      "warm-paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#faf7f2",
+        "tonalRamp": ["#1a1816", "#33302c", "#4d4843", "#666059", "#807870", "#faf7f2", "#fcfaf7", "#fdfcf9", "#fefdfb", "#fefefe"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1c1c1c",
+        "tonalRamp": ["#1c1c1c", "#2e2e2e", "#404040", "#525252", "#646464", "#767676", "#888888", "#9a9a9a", "#acacac", "#bebebe"]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#3b3632",
+        "tonalRamp": ["#3b3632", "#4e4944", "#615b56", "#746e68", "#87817a", "#9a948c", "#ada79e", "#c0bab0", "#d3cdc2", "#e6e0d4"]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Faint Ink",
+        "canonical": "#6e6660",
+        "tonalRamp": ["#6e6660", "#7c7570", "#8a8480", "#989390", "#a6a2a0", "#b4b1b0", "#c2c0c0", "#d0cfd0", "#dededf", "#ececed"]
+      },
+      "rule-gray": {
+        "role": "neutral",
+        "displayName": "Rule Gray",
+        "canonical": "#d4cec6",
+        "tonalRamp": ["#2a2927", "#403e3b", "#56534f", "#6c6863", "#827d77", "#d4cec6", "#ddd8d2", "#e6e2de", "#efecea", "#f8f6f6"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name only — once per page, full viewport weight."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings throughout the page."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All reading text, max 60ch line length."
+      },
+      "label": {
+        "displayName": "Label / Mono",
+        "purpose": "Dates, asides, meta-text, contact links, typewriter effects."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "typewriter-char",
+        "value": "50ms ± 40ms random per character",
+        "purpose": "Character-by-character typing in the opening greeting."
+      },
+      {
+        "name": "stamp-in",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1) 0.7s",
+        "purpose": "Name entrance — stamping down like wax seal pressure."
+      },
+      {
+        "name": "rule-draw",
+        "value": "ease 0.6s",
+        "purpose": "Horizontal rules drawing from left to right."
+      },
+      {
+        "name": "scroll-reveal",
+        "value": "ease 0.7s",
+        "purpose": "Sections fading and sliding up on scroll entry."
+      },
+      {
+        "name": "aside-reveal",
+        "value": "ease 0.2s",
+        "purpose": "Aside tooltip bubbles appearing on hover."
+      },
+      {
+        "name": "arrow-bounce",
+        "value": "ease-in-out 1.6s infinite",
+        "purpose": "Scroll cue arrow bouncing down."
+      },
+      {
+        "name": "cursor-blink-typing",
+        "value": "step-end 0.8s infinite",
+        "purpose": "Monospace cursor blinking during typewriter animation."
+      },
+      {
+        "name": "cursor-blink-idle",
+        "value": "step-end 2s infinite",
+        "purpose": "Monospace cursor slow-blink after typing completes."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Contact Link",
+      "kind": "custom",
+      "refersTo": "contact-link",
+      "description": "Inline text link with a crimson underline. Used for email, GitHub, LinkedIn, and any external reference.",
+      "html": "<a href=\"#\" class=\"ds-contact-link\">jamie@example.com</a>",
+      "css": ".ds-contact-link { display: inline-block; font-family: 'Courier Prime', 'Courier New', monospace; font-size: 0.9375rem; color: #b22234; text-decoration: none; border-bottom: 1px solid #b22234; padding-bottom: 0.15em; transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease; } .ds-contact-link:hover { color: #8b1a28; border-color: #8b1a28; transform: translateY(-1px); } .ds-contact-link:active { transform: translateY(1px); transition: transform 0.05s; } .ds-contact-link:focus-visible { outline: 2px solid #b22234; outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Work Entry",
+      "kind": "card",
+      "refersTo": "work-entry",
+      "description": "A prose list item with a hidden 'real talk' expansion on hover. Used for project entries in the work section.",
+      "html": "<div class=\"ds-work-entry\"><p class=\"ds-work-date\">2023–Present</p><p class=\"ds-work-title\">Design System Infrastructure</p><p class=\"ds-work-context\">At a company</p><p class=\"ds-work-surface\">Built the component architecture serving 40+ teams.</p><p class=\"ds-work-real-talk\">Real talk: the honest version.</p></div>",
+      "css": ".ds-work-entry { padding: 2rem 0; border-bottom: 1px solid #d4cec6; cursor: default; } .ds-work-entry:first-child { padding-top: 0; } .ds-work-entry:last-child { border-bottom: none; padding-bottom: 0; } .ds-work-date { font-family: 'Courier Prime', 'Courier New', monospace; font-size: 0.75rem; color: #6e6660; letter-spacing: 0.06em; margin-bottom: 0.25rem; } .ds-work-title { font-family: 'Vollkorn', Georgia, serif; font-size: 1.25rem; font-weight: 700; line-height: 1.3; color: #1c1c1c; margin-bottom: 0.25rem; } .ds-work-context { font-family: 'Courier Prime', 'Courier New', monospace; font-size: 0.75rem; color: #6e6660; font-style: italic; margin-bottom: 0.5rem; } .ds-work-surface { font-family: 'Vollkorn', Georgia, serif; font-size: 0.9375rem; color: #3b3632; line-height: 1.65; max-width: 60ch; } .ds-work-real-talk { max-height: 0; overflow: hidden; opacity: 0; font-family: 'Courier Prime', 'Courier New', monospace; font-size: 0.75rem; color: #b22234; line-height: 1.6; margin-top: 0; transition: max-height 0.4s ease, margin-top 0.4s ease, opacity 0.3s ease; } .ds-work-entry:hover .ds-work-real-talk, .ds-work-entry:focus-within .ds-work-real-talk { max-height: 6rem; margin-top: 0.75rem; opacity: 1; }"
+    },
+    {
+      "name": "Aside Bubble",
+      "kind": "custom",
+      "refersTo": "aside",
+      "description": "An inline underlined phrase that reveals a joke or aside on hover. Used within body paragraphs for personality.",
+      "html": "<span class=\"ds-aside\">hover me<span class=\"ds-aside-pop\">The punchline goes here.</span></span>",
+      "css": ".ds-aside { font-family: 'Courier Prime', 'Courier New', monospace; font-size: 0.75rem; color: #b22234; display: inline-block; cursor: pointer; border-bottom: 1px dashed #b22234; padding-bottom: 0.1em; position: relative; transition: color 0.2s; } .ds-aside:hover { color: #d4253d; } .ds-aside-pop { position: absolute; bottom: calc(100% + 0.5rem); left: 50%; transform: translateX(-50%) translateY(4px); background: #1c1c1c; color: #faf7f2; font-family: 'Courier Prime', 'Courier New', monospace; font-size: 0.6875rem; line-height: 1.5; padding: 0.65rem 0.85rem; border-radius: 3px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease; z-index: 5; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .ds-aside-pop::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #1c1c1c; } .ds-aside:hover .ds-aside-pop { opacity: 1; transform: translateX(-50%) translateY(0); }"
+    },
+    {
+      "name": "Timeline Entry",
+      "kind": "card",
+      "refersTo": "timeline-entry",
+      "description": "A two-column grid item for career chronology. Period on the left, role details on the right.",
+      "html": "<div class=\"ds-timeline-entry\"><span class=\"ds-timeline-period\">2023–Now</span><div><p class=\"ds-timeline-role\">Staff Engineer</p><p class=\"ds-timeline-org\">A company</p><p class=\"ds-timeline-note\">What I did there.</p></div></div>",
+      "css": ".ds-timeline-entry { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem 2rem; padding: 1rem 0; border-bottom: 1px solid #d4cec6; } .ds-timeline-entry:first-child { padding-top: 0; } .ds-timeline-entry:last-child { border-bottom: none; padding-bottom: 0; } .ds-timeline-period { font-family: 'Courier Prime', 'Courier New', monospace; font-size: 0.75rem; color: #6e6660; letter-spacing: 0.04em; padding-top: 0.2rem; } .ds-timeline-role { font-family: 'Vollkorn', Georgia, serif; font-size: 1.0625rem; font-weight: 600; color: #1c1c1c; line-height: 1.3; } .ds-timeline-org { font-family: 'Courier Prime', 'Courier New', monospace; font-size: 0.8125rem; color: #6e6660; font-style: italic; } .ds-timeline-note { font-family: 'Vollkorn', Georgia, serif; font-size: 0.875rem; color: #3b3632; line-height: 1.55; margin-top: 0.25rem; } @media (max-width: 600px) { .ds-timeline-entry { grid-template-columns: 5.5rem 1fr; gap: 0.5rem 1rem; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Personal Dispatch",
+    "overview": "This is a letter that arrived in the mail — warm paper, dark ink, a wax seal, and handwriting in the margins. The design system treats every visitor as someone worth writing to directly. It refuses the self-marketing brochure, the designer portfolio template, and anything that reads like it was written by committee. The voice is confident and witty, never self-serious.\n\nThe surface is typographic above all. Vollkorn carries the letterpress weight — commanding at display sizes, warm and readable in body. Courier Prime handles meta-information: dates, asides, labels, the little typewriter notes in the margin. There are no images, no hero graphics, no gradients. The text is the visual weight. Depth comes from tonal layering of warm paper tones, not from shadows or elevation.\n\nMotion is authored, not scattered. The typewriter greeting types itself line by line. The name stamps into place like a seal pressed into wax. Rules draw themselves from left to right. Sections reveal on scroll, staggered like paragraphs discovered one at a time.",
+    "keyCharacteristics": [
+      "Typographic-first: no images, no icons, no hero graphics",
+      "Single accent: Sealing Wax crimson, used on ≤ 5 elements per viewport",
+      "Direct address: 'I' and 'you,' never third person",
+      "Hidden depth: hover reveals, real-talk asides, jokes in the margins",
+      "Flat and warm: tonal paper layers, no shadows, no glass, no radius"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Sealing Wax appears on ≤ 5 elements per viewport. Its rarity is the point. A page where everything is red is a page where nothing is.",
+        "section": "colors"
+      },
+      {
+        "name": "The Weight Rule",
+        "body": "Vollkorn at weight 800 is reserved for the name. Use 700 for section headings, 400 for body. Never use Vollkorn below 400 or between 500–600.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces are flat at rest. Any future depth effect must be state-driven (hover, focus, active), never decorative.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Sharp Edge Rule",
+        "body": "Corners are square. If a radius appears, it signals that the element is not part of the page — it's floating above it (tooltips, popovers).",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do use generous margins — the letter needs room to breathe (margin-edge: clamp(1.5rem, 6vw, 8rem)).",
+      "Do use Courier Prime for all meta-information: dates, asides, labels, contact links, typewriter effects.",
+      "Do use Vollkorn 800 for the name only, 700 for section headings, 400 for body text.",
+      "Do keep Sealing Wax below 5% of any viewport — a single rule, a single link, an aside underline.",
+      "Do address the reader directly — 'I' and 'you,' first and second person.",
+      "Do stack more space above a heading than below it."
+    ],
+    "donts": [
+      "Don't add images, photos, icons, or hero graphics. Text is the visual weight.",
+      "Don't use border-radius on page elements. The page is flat paper.",
+      "Don't use shadows, glass effects, gradients, or blur.",
+      "Don't introduce a second accent color. Sealing Wax is the only one.",
+      "Don't use section labels or kickers above headings.",
+      "Don't write in third person. 'Jamie does X' is a failure of voice.",
+      "Don't use Vollkorn below weight 400 or at weights 500–600."
+    ]
+  }
+}
