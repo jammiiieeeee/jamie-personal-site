@@ -15,7 +15,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Now — Jamie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,6 +54,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     color: var(--ink);
     line-height: 1.7;
     font-weight: 400;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 
   main {
@@ -88,7 +92,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   /* ── Floating pill nav ── */
   .pill-nav {
     position: fixed;
-    bottom: 1.5rem;
+    bottom: max(1.5rem, env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
@@ -273,12 +277,43 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     }
 
     .back-link { margin-bottom: var(--spacing-lg); }
-    .salutation { margin-bottom: var(--spacing-md); }
+
+    .salutation {
+      margin-bottom: var(--spacing-md);
+      font-size: 1.125rem;
+    }
+
+    .letter p {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-sm);
+    }
+
     .signature { font-size: 2.5rem; }
+
+    .closing-salutation { font-size: 1.25rem; }
+
+    .closing-ps {
+      margin-left: 0;
+      padding-left: 0.75rem;
+      font-size: 0.6875rem;
+    }
+
+    .closing-date { font-size: 0.6875rem; }
+
+    .pill-nav-link {
+      padding: 0.4rem 0.65rem;
+      font-size: 0.6875rem;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .pill-nav { padding: 0.3rem 0.4rem; }
   }
 
   @media print {
-    body { background: white; color: black; font-size: 11pt; }
+    body { background: white; color: black; font-size: 11pt; padding: 0; }
     main { max-width: 100%; padding: 0; }
     .back-link { display: none; }
     .reveal { opacity: 1 !important; transform: none !important; }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Jamie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,6 +43,10 @@
     color: var(--ink);
     line-height: 1.7;
     font-weight: 400;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 
   main {
@@ -540,7 +544,7 @@
   /* ── Floating pill nav ── */
   .pill-nav {
     position: fixed;
-    bottom: 1.5rem;
+    bottom: max(1.5rem, env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
@@ -601,14 +605,39 @@
       --margin-edge: 1.25rem;
       --spacing-xl: 3.5rem;
       --spacing-lg: 2.5rem;
+      --spacing-md: 1.5rem;
     }
 
-    .opening { min-height: 90svh; }
+    .opening {
+      min-height: 90svh;
+      padding-top: var(--spacing-md);
+      padding-bottom: calc(var(--spacing-md) + 3rem);
+    }
+
+    .opening-name { font-size: clamp(2.5rem, 10vw, 4rem); }
+
+    .opening-sub { font-size: 1rem; max-width: none; }
+
+    .opening-prompt { font-size: 0.75rem; }
+
+    .section-body { font-size: 1rem; line-height: 1.7; }
+
+    .section-heading { font-size: 1.625rem; }
+
+    .section-heading-sub { font-size: 0.6875rem; }
 
     .timeline-entry {
       grid-template-columns: 5.5rem 1fr;
       gap: var(--spacing-xs) var(--spacing-sm);
     }
+
+    .timeline-role { font-size: 1rem; }
+
+    .work-entry { padding: var(--spacing-sm) 0; }
+
+    .work-title { font-size: 1.125rem; }
+
+    .work-surface { font-size: 0.875rem; }
 
     .aside-pop {
       white-space: normal;
@@ -616,11 +645,86 @@
       text-align: center;
     }
 
+    .contact-list {
+      gap: var(--spacing-xs);
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .contact-link {
+      font-size: 1rem;
+      padding: 0.4rem 0;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
     .signature { font-size: 2.5rem; }
+
+    .closing-salutation { font-size: 1.25rem; }
+
+    .closing-ps {
+      margin-left: 0;
+      padding-left: 0.75rem;
+      font-size: 0.6875rem;
+    }
+
+    .closing-date { font-size: 0.6875rem; }
+
+    .scroll-cue {
+      bottom: calc(var(--spacing-md) + 1rem);
+      font-size: 0.625rem;
+    }
+
+    .pill-nav-link {
+      padding: 0.4rem 0.65rem;
+      font-size: 0.6875rem;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .pill-nav {
+      padding: 0.3rem 0.4rem;
+    }
+  }
+
+  /* ── Touch: hover-dependent interactions ── */
+  @media (hover: none) and (pointer: coarse) {
+    .work-entry {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .work-real-talk {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, margin-top 0.35s ease, opacity 0.3s ease;
+    }
+
+    .work-entry.tapped .work-real-talk {
+      max-height: 6rem;
+      margin-top: 0.75rem;
+      opacity: 1;
+    }
+
+    .aside {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .aside-pop {
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .aside.revealed .aside-pop {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   }
 
   @media print {
-    body { background: white; color: black; font-size: 11pt; }
+    body { background: white; color: black; font-size: 11pt; padding: 0; }
     main { max-width: 100%; padding: 0; }
     .scroll-cue { display: none; }
     .aside-pop { display: none; }
@@ -816,6 +920,36 @@
       scrollCue.classList.add('visible');
     }
   });
+
+  /* ── Touch: tap-to-reveal for hover-dependent elements ── */
+  var isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+  if (isTouch) {
+    var workEntries = document.querySelectorAll('.work-entry');
+    workEntries.forEach(function(entry) {
+      entry.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var wasTapped = entry.classList.contains('tapped');
+        workEntries.forEach(function(el) { el.classList.remove('tapped'); });
+        if (!wasTapped) entry.classList.add('tapped');
+      });
+    });
+
+    var asides = document.querySelectorAll('.aside');
+    asides.forEach(function(aside) {
+      aside.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var wasRevealed = aside.classList.contains('revealed');
+        asides.forEach(function(el) { el.classList.remove('revealed'); });
+        if (!wasRevealed) aside.classList.add('revealed');
+      });
+    });
+
+    document.addEventListener('click', function() {
+      asides.forEach(function(el) { el.classList.remove('revealed'); });
+      workEntries.forEach(function(el) { el.classList.remove('tapped'); });
+    });
+  }
 })();
 </script>
 </body>
