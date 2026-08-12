@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internship — Jamie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Courier+Prime:ital@0;1&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #faf7f2;
+    --ink: #1c1c1c;
+    --ink-soft: #3b3632;
+    --ink-faint: #6e6660;
+    --seal: #b22234;
+    --seal-bright: #d4253d;
+    --seal-dim: #8b1a28;
+    --rule: #d4cec6;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+    --measure: 60ch;
+    --margin-edge: clamp(1.5rem, 6vw, 8rem);
+  }
+
+  html {
+    font-size: clamp(16px, 1.1vw + 10px, 20px);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: 'Vollkorn', Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  main {
+    max-width: calc(var(--measure) + 2 * var(--margin-edge));
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--margin-edge) var(--spacing-xl);
+  }
+
+  .back-link {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    display: inline-block;
+    margin-bottom: var(--spacing-xl);
+    transition: color 0.2s ease, transform 0.15s ease;
+    position: relative;
+  }
+
+  .back-link:hover {
+    color: var(--seal);
+    transform: translateX(-3px);
+  }
+
+  .back-link:focus-visible {
+    outline: 2px solid var(--seal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ── Floating pill nav ── */
+  .pill-nav {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .pill-nav-link {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 0.3rem 0.75rem;
+    transition: color 0.2s ease;
+  }
+
+  .pill-nav-link.active {
+    color: var(--ink);
+  }
+
+  .pill-nav-link:hover {
+    color: var(--seal);
+  }
+
+  .pill-nav-link:focus-visible {
+    outline: 2px solid var(--seal);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .pill-nav-sep {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.625rem;
+    color: var(--rule);
+    user-select: none;
+  }
+
+  /* ── Page title ── */
+  .page-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: var(--spacing-xs);
+    color: var(--ink);
+  }
+
+  .page-subtitle {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--spacing-lg);
+    font-style: italic;
+  }
+
+  /* ── Company badge ── */
+  .company-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--seal);
+    letter-spacing: 0.06em;
+    border: 1px solid var(--seal);
+    padding: 0.25rem 0.65rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* ── Section rules ── */
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .section + .section {
+    border-top: 1px solid var(--rule);
+    border-image: linear-gradient(to right, transparent 0%, var(--rule) 10%, var(--rule) 90%, transparent 100%) 1;
+  }
+
+  .section-heading {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: var(--spacing-sm);
+    color: var(--ink);
+  }
+
+  .section-heading-sub {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+  }
+
+  .section-body {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+
+  .section-body p + p { margin-top: var(--spacing-sm); }
+
+  /* ── Stat grid ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+  }
+
+  .stat-item {
+    padding: var(--spacing-sm) 0;
+    border-top: 2px solid var(--seal);
+  }
+
+  .stat-number {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .stat-number .unit {
+    font-size: 0.5em;
+    font-weight: 600;
+    opacity: 0.6;
+    margin-left: 0.1em;
+  }
+
+  .stat-label {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.6875rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+
+  /* ── Phase list ── */
+  .phase-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-md);
+  }
+
+  .phase-entry {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .phase-entry:first-child { padding-top: 0; }
+  .phase-entry:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .phase-num {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.8125rem;
+    color: var(--seal);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding-top: 0.15rem;
+  }
+
+  .phase-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .phase-desc {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-top: 0.15rem;
+  }
+
+  /* ── Insight block ── */
+  .insight-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-md);
+  }
+
+  .insight-item {
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .insight-item:first-child { padding-top: 0; }
+  .insight-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .insight-num {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.6875rem;
+    color: var(--seal);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.35rem;
+  }
+
+  .insight-title {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .insight-body {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.arrived {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+  .reveal-delay-6 { transition-delay: 0.6s; }
+  .reveal-delay-7 { transition-delay: 0.7s; }
+
+  /* ── Closing ── */
+  .closing {
+    border-top: 1px solid var(--rule);
+    border-image: linear-gradient(to right, transparent 0%, var(--rule) 10%, var(--rule) 90%, transparent 100%) 1;
+    padding-top: var(--spacing-xl);
+  }
+
+  .closing-rule {
+    width: 4rem; height: 2px;
+    background: var(--seal);
+    margin: 0 0 var(--spacing-lg);
+    border: none;
+    transform-origin: left;
+  }
+
+  .closing-rule.drawn {
+    animation: drawRule 0.6s ease forwards;
+  }
+
+  @keyframes drawRule {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .closing-salutation {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .signature-wrap {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .signature {
+    font-family: 'Caveat', cursive;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .signature-drawn {
+    position: relative;
+    display: inline-block;
+  }
+
+  .signature-drawn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--seal);
+  }
+
+  .signature-drawn.signed::after {
+    animation: underlineSign 0.8s ease 0.3s forwards;
+  }
+
+  @keyframes underlineSign {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+
+  .closing-date {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-top: var(--spacing-xs);
+  }
+
+  .closing-ps {
+    margin-top: var(--spacing-md);
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    line-height: 1.6;
+    max-width: var(--measure);
+    padding-left: 1rem;
+    border-left: 2px solid var(--seal);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    :root {
+      --margin-edge: 1.25rem;
+      --spacing-xl: 3.5rem;
+      --spacing-lg: 2.5rem;
+      --spacing-md: 1.5rem;
+    }
+
+    .back-link { margin-bottom: var(--spacing-lg); }
+    .page-subtitle { margin-bottom: var(--spacing-md); }
+    .signature { font-size: 2.5rem; }
+
+    .stat-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-sm);
+    }
+  }
+
+  @media print {
+    body { background: white; color: black; font-size: 11pt; }
+    main { max-width: 100%; padding: 0; }
+    .back-link { display: none; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <a href="index.html" class="back-link reveal">&larr; Home</a>
+
+  <nav class="pill-nav">
+    <a href="index.html" class="pill-nav-link">Home</a>
+    <span class="pill-nav-sep">&middot;</span>
+    <a href="now.html" class="pill-nav-link">Now</a>
+    <span class="pill-nav-sep">&middot;</span>
+    <span class="pill-nav-link active">Internship</span>
+  </nav>
+
+  <section class="section">
+    <div class="company-badge reveal">Johnson Electric &middot; 2026</div>
+    <h1 class="page-title reveal reveal-delay-1">An internship on the factory floor</h1>
+    <p class="page-subtitle reveal reveal-delay-1">E-Learning Development &middot; Articulate 360 &middot; Manufacturing Transformation</p>
+    <div class="section-body">
+      <p class="reveal reveal-delay-2">I spent my internship at Johnson Electric — a global precision manufacturing company with 35,000+ employees across 20 countries, producing motors, solenoids, and motion subsystems for automotive, industrial, and medical applications. Founded in 1959, listed on the Hong Kong Stock Exchange since 1984, and holding the #1 market share in automotive micro-motors.</p>
+      <p class="reveal reveal-delay-3">My mandate was simple in words and complex in execution: build e-learning modules that actually train operators — not compliance checkboxes, not PDFs dressed up as courses. Real training, for real production lines, where the person taking the course is the person who will stand in front of the machine tomorrow. The standard you meet is the standard they carry into the factory.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-heading reveal">What I did</h2>
+    <p class="section-heading-sub reveal reveal-delay-1">Four responsibilities, one goal: turn paper training into something that scales.</p>
+
+    <ul class="phase-list">
+      <li class="phase-entry reveal reveal-delay-2">
+        <span class="phase-num">01</span>
+        <div>
+          <p class="phase-title">Content Development</p>
+          <p class="phase-desc">Built interactive e-learning modules using Articulate Storyline 360, tailored to manufacturing workflows and operator training needs. Each module mapped directly to a real station on a real production line.</p>
+        </div>
+      </li>
+      <li class="phase-entry reveal reveal-delay-3">
+        <span class="phase-num">02</span>
+        <div>
+          <p class="phase-title">Instructional Design</p>
+          <p class="phase-desc">Applied adult learning principles to structure content — from storyboarding through final production. Every screen had to earn its place. If it didn't help someone on the line do their job better, it didn't survive review.</p>
+        </div>
+      </li>
+      <li class="phase-entry reveal reveal-delay-4">
+        <span class="phase-num">03</span>
+        <div>
+          <p class="phase-title">Knowledge Checks &amp; Assessment</p>
+          <p class="phase-desc">Developed quizzes and scenario-based assessments that verify comprehension — not the "what year was this founded" kind, but "what do you do when the pressure gauge reads red" kind. The kind that matters when the machine is running.</p>
+        </div>
+      </li>
+      <li class="phase-entry reveal reveal-delay-5">
+        <span class="phase-num">04</span>
+        <div>
+          <p class="phase-title">LMS Deployment</p>
+          <p class="phase-desc">Packaged SCORM-compliant modules and deployed to the corporate Learning Management System for global access. One upload, available to every site, every shift.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="section-heading reveal">The results</h2>
+    <p class="section-heading-sub reveal reveal-delay-1">What changed when training went digital.</p>
+
+    <div class="stat-grid">
+      <div class="stat-item reveal reveal-delay-2">
+        <p class="stat-number">40<span class="unit">%</span></p>
+        <p class="stat-label">Reduction in time-to-competency across pilot production lines</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <p class="stat-number">35<span class="unit">%</span></p>
+        <p class="stat-label">Improved knowledge retention measured via post-training assessments</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-4">
+        <p class="stat-number">2<span class="unit">x</span></p>
+        <p class="stat-label">Faster onboarding for new operators joining automated production lines</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-5">
+        <p class="stat-number">500<span class="unit">+</span></p>
+        <p class="stat-label">Course completions recorded across multiple manufacturing sites</p>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p class="reveal reveal-delay-6" style="margin-top: var(--spacing-md);">The shift was real. Before: instructor-led sessions with printed manuals — one trainer, one location, one shift at a time. After: SCORM-compliant modules accessible 24/7, standardized globally, with complete LMS analytics and completion tracking. The training infrastructure caught up to the production infrastructure.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-heading reveal">What I learned</h2>
+    <p class="section-heading-sub reveal reveal-delay-1">Three things I now understand about the intersection of manufacturing and education.</p>
+
+    <ul class="insight-list">
+      <li class="insight-item reveal reveal-delay-2">
+        <p class="insight-num">01</p>
+        <p class="insight-title">Content is infrastructure</p>
+        <p class="insight-body">Well-designed training modules are as critical to production lines as the machinery itself. A machine without a trained operator is just a machine. A trained operator without a maintained curriculum is a trained operator waiting to forget. Content, done right, is not a nice-to-have. It's part of the production line.</p>
+      </li>
+      <li class="insight-item reveal reveal-delay-3">
+        <p class="insight-num">02</p>
+        <p class="insight-title">Learning must match the line speed</p>
+        <p class="insight-body">As production lines evolve from manual to semi to full automation, training must keep pace. You can't teach automated equipment with a printed binder. Digital learning scales with the business — it doesn't have to wait for the right trainer to be available on the right shift at the right site.</p>
+      </li>
+      <li class="insight-item reveal reveal-delay-4">
+        <p class="insight-num">03</p>
+        <p class="insight-title">Data-driven learning works</p>
+        <p class="insight-body">LMS analytics close the feedback loop that classroom training leaves open. Track completions. Measure retention. Prove ROI. When you can show a factory manager that the operators who took the module have 40% fewer quality defects, the conversation changes from "should we do e-learning" to "when can we get the next module."</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="closing reveal">
+    <hr class="closing-rule" id="closing-rule" aria-hidden="true">
+    <p class="closing-salutation">Onward,</p>
+    <div class="signature-wrap">
+      <span class="signature-drawn" id="signature"><span class="signature">Jamie</span></span>
+    </div>
+    <p class="closing-date">Written in the summer of 2026. Remembered longer than that.</p>
+    <div class="closing-ps">
+      <strong>P.S.</strong> This page exists because internships should leave a record — not just a line on a CV, but a place to point people when they ask "what did you actually do there." If you're an intern reading this: write down what you built. In five years you'll be glad you did.
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  var closingRule = document.getElementById('closing-rule');
+  var signature = document.getElementById('signature');
+  var closingDrawn = false;
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('arrived');
+        observer.unobserve(entry.target);
+
+        if (!closingDrawn && entry.target.classList.contains('closing')) {
+          closingDrawn = true;
+          setTimeout(function() { closingRule.classList.add('drawn'); }, 300);
+          setTimeout(function() { signature.classList.add('signed'); }, 700);
+        }
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(function(el) { observer.observe(el); });
+
+  sessionStorage.setItem('visited', '1');
+})();
+</script>
+</body>
+</html>
